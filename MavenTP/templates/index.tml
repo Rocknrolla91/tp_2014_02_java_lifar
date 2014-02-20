@@ -1,0 +1,11 @@
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+Hello, user! You have a sessionID = ${userId}
+<div>
+    <img src="/index.ipg"/>
+</div>
+</body>
+</html>
