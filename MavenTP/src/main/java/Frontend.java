@@ -72,7 +72,8 @@ public class Frontend extends HttpServlet{
                 }
                     break;
             default:
-                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                //response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                response.sendRedirect("/index");
                 break;
         }
     }

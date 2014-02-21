@@ -6,7 +6,7 @@
     <div>
     <#if ErrorMessage??>
         <p style="color:red;">${ErrorMessage}</p>
-        <img src="/static/tp.png"/>
+        <img src="/auth_err.png" style="max-height:200px"/>
     </#if>
     </div>
 

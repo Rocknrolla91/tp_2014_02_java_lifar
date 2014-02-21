@@ -5,7 +5,8 @@
 <body>
 Hello, user! You have a sessionID = ${userId}
 <div>
-    <img src="/index.ipg"/>
+    <p><a href="/timer"> you can go to Timer!</a></p>
+    <img src="/tp.png"/>
 </div>
 </body>
 </html>
