@@ -15,8 +15,11 @@ import java.util.concurrent.atomic.AtomicLong;
  * Created by Alena on 2/20/14.
  */
 public class Frontend extends HttpServlet{
-    private String LOGIN = "login";
-    private String PASSWORD = "password";
+    private static Map<String, String> USERS_= new HashMap<>();
+    static {
+        USERS_.put("alena", "password");
+        USERS_.put("ivan", "pupkin");
+    }
     private AtomicLong userIdGen = new AtomicLong(0);
 
     public static String getTime() {
@@ -41,12 +44,14 @@ public class Frontend extends HttpServlet{
             throws IOException, ServletException
     {
         String currentlyPage;
-        Long userId =(Long) request.getSession().getAttribute("userId");
         Map<String, Object> pageVariables = new HashMap<>();
 
         switch(request.getPathInfo())
         {
             case "/index":
+            {
+                HttpSession session = request.getSession();
+                Long userId = (Long) session.getAttribute("userId");
                 if(userId != null) {
                     currentlyPage = "index.tml";
                     pageVariables.put("userId", userId);
@@ -55,22 +60,28 @@ public class Frontend extends HttpServlet{
                     response.sendRedirect("/auth");
                 }
                 break;
+            }
             case "/auth":
+            {
                 currentlyPage = "authorize.tml";
                 okResponse(response, pageVariables, currentlyPage);
                 break;
+            }
             case "/timer":
+            {
+                HttpSession session = request.getSession();
+                Long userId = (Long) session.getAttribute("userId");
                 if(userId != null) {
                     currentlyPage = "timer.tml";
                     pageVariables.put("userId", userId);
                     pageVariables.put("refreshPeriod", "1000");
                     pageVariables.put("serverTime", getTime());
-                    HttpSession session = request.getSession();
                     okResponse(response, pageVariables, currentlyPage);
                 } else {
                     response.sendRedirect("/auth");
                 }
                     break;
+            }
             default:
                 response.sendRedirect("/index");
                 break;
@@ -80,15 +91,19 @@ public class Frontend extends HttpServlet{
                        HttpServletResponse response)
             throws IOException, ServletException
     {
-        String inputLogin = request.getParameter("login");
-        String inputPassword = request.getParameter("password");
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
         Map<String, Object> pageVariables = new HashMap<>();
         String currentlyPage = "authorize.tml";
-        if(inputLogin.equals(LOGIN) && inputPassword.equals(PASSWORD))
-        {
-            request.getSession().setAttribute("userId", userIdGen.getAndIncrement());
-            response.sendRedirect("/timer");
-            return;
+        if(USERS_.containsKey(login)) {
+            if (USERS_.get(login).equals(password)) {
+
+                HttpSession session = request.getSession();
+                Long userId = userIdGen.getAndIncrement();
+                session.setAttribute("userId", userId);
+                response.sendRedirect("/timer");
+                return;
+            }
         }
         pageVariables.put("ErrorMessage", "You are not valid, guy!");
         okResponse(response, pageVariables, currentlyPage);
