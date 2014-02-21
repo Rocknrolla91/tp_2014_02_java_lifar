@@ -6,7 +6,7 @@
 Hello, user! You have a sessionID = ${userId}
 <div>
     <p><a href="/timer"> you can go to Timer!</a></p>
-    <img src="/tp.png"/>
+    <img src="/putin.jpg" style="max-height:200px"/>
 </div>
 </body>
 </html>
