@@ -15,8 +15,8 @@ import java.util.concurrent.atomic.AtomicLong;
  * Created by Alena on 2/20/14.
  */
 public class Frontend extends HttpServlet{
-    private static Map<String, String> USERS_= new HashMap<>();
-    static {
+    private Map<String, String> USERS_= new HashMap<>();
+    {
         USERS_.put("alena", "password");
         USERS_.put("ivan", "pupkin");
     }
@@ -24,7 +24,6 @@ public class Frontend extends HttpServlet{
 
     public static String getTime() {
         Date date = new Date();
-        date.getTime();
         DateFormat formatter = new SimpleDateFormat("HH.mm.ss");
         return formatter.format(date);
     }
@@ -82,30 +81,67 @@ public class Frontend extends HttpServlet{
                 }
                     break;
             }
+            case "/regist":
+            {
+                currentlyPage = "registration.tml";
+                okResponse(response, pageVariables, currentlyPage);
+                break;
+            }
             default:
                 response.sendRedirect("/index");
                 break;
         }
     }
+    private void getUserId(HttpServletResponse response,
+                           HttpServletRequest request)
+            throws IOException, ServletException
+    {
+        HttpSession session = request.getSession();
+        Long userId = userIdGen.getAndIncrement();
+        session.setAttribute("userId", userId);
+        response.sendRedirect("/timer");
+        return;
+    }
+
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response)
             throws IOException, ServletException
     {
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        Map<String, Object> pageVariables = new HashMap<>();
-        String currentlyPage = "authorize.tml";
-        if(USERS_.containsKey(login)) {
-            if (USERS_.get(login).equals(password)) {
+        switch(request.getPathInfo())
+        {
+            case "/auth":
+            {
+                String login = request.getParameter("login");
+                String password = request.getParameter("password");
+                if(USERS_.containsKey(login)) {
+                    if (USERS_.get(login).equals(password)) {
 
-                HttpSession session = request.getSession();
-                Long userId = userIdGen.getAndIncrement();
-                session.setAttribute("userId", userId);
-                response.sendRedirect("/timer");
-                return;
+                        getUserId(response, request);
+                    }
+                }
+                Map<String, Object> pageVariables = new HashMap<>();
+                String currentlyPage = "authorize.tml";
+                pageVariables.put("ErrorMessage", "You are not valid, guy!");
+                okResponse(response, pageVariables, currentlyPage);
+                break;
             }
+            case "/regist":
+            {
+                String login = request.getParameter("login");
+                String password = request.getParameter("password");
+                if(!login.isEmpty() && !password.isEmpty())
+                {
+                    USERS_.put(login, password);
+                    getUserId(response, request);
+                }
+                Map<String, Object> pageVariables = new HashMap<>();
+                String currentlyPage = "registration.tml";
+                pageVariables.put("ErrorMessage", "You must write here anything, dear!");
+                okResponse(response, pageVariables, currentlyPage);
+                break;
+
+            }
+
         }
-        pageVariables.put("ErrorMessage", "You are not valid, guy!");
-        okResponse(response, pageVariables, currentlyPage);
     }
 }

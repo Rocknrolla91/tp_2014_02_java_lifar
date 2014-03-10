@@ -26,8 +26,8 @@ public class Main {
         resource_handler.setResourceBase("static");
 
         RewriteHandler rewriteHandler = new RewriteHandler();
-        rewriteHandler.setRewriteRequestURI(true);
-        rewriteHandler.setRewritePathInfo(true);
+       // rewriteHandler.setRewriteRequestURI(true);
+       // rewriteHandler.setRewritePathInfo(true);
         rewriteHandler.setOriginalPathAttribute("requestedPath");
         RedirectRegexRule rule = new RedirectRegexRule();
         rule.setRegex("/*");

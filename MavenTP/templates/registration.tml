@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title> Sign up, if you want! </title>
+    </head>
+    <body>
+        <div>
+            <#if ErrorMessage??>
+            <p style="color:red;">${ErrorMessage}</p>
+            <img src="/auth_err.png" style="max-height:200px"/>
+        </#if>
+        </div>
+        <form method="post">
+            <label for="login" title="Username:">
+                <input id="login" type="text" name="login"/>
+            </label>
+            <br />
+            <label for="password" title="Password:">
+                <input id="password" type="text" name="password"/>
+            </label>
+            <input type="submit" value="Sign up me NOW!" />
+        </form>
+    </body>
+</html>

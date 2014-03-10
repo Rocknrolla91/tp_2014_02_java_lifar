@@ -20,5 +20,8 @@
         </label>
         <input type="submit" value="GO!" />
     </form>
+    <p style="color:green;">
+        <a href="/regist">You can sign up here!</a>
+    </p>
 </body>
 </html>
