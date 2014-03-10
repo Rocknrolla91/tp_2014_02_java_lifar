@@ -1,3 +1,7 @@
+import database.DataService;
+import exception.DataServiceException;
+import exception.EmptyDataException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,12 +19,13 @@ import java.util.concurrent.atomic.AtomicLong;
  * Created by Alena on 2/20/14.
  */
 public class Frontend extends HttpServlet{
-    private Map<String, String> USERS_= new HashMap<>();
-    {
-        USERS_.put("alena", "password");
-        USERS_.put("ivan", "pupkin");
-    }
     private AtomicLong userIdGen = new AtomicLong(0);
+    public DataService dataService;
+
+    public Frontend()
+    {
+        dataService = new DataService();
+    }
 
     public static String getTime() {
         Date date = new Date();
@@ -38,6 +43,7 @@ public class Frontend extends HttpServlet{
         response.getWriter().println(PageGenerator.getPage(currentlyPage, variables));
     }
 
+    @Override
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
             throws IOException, ServletException
@@ -103,6 +109,7 @@ public class Frontend extends HttpServlet{
         return;
     }
 
+    @Override
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response)
             throws IOException, ServletException
@@ -113,31 +120,38 @@ public class Frontend extends HttpServlet{
             {
                 String login = request.getParameter("login");
                 String password = request.getParameter("password");
-                if(USERS_.containsKey(login)) {
-                    if (USERS_.get(login).equals(password)) {
-
-                        getUserId(response, request);
-                    }
+                try
+                {
+                    dataService.isEmptyCredentials(login, password);
+                    dataService.auth(login, password);
+                    getUserId(response, request);
                 }
-                Map<String, Object> pageVariables = new HashMap<>();
-                String currentlyPage = "authorize.tml";
-                pageVariables.put("ErrorMessage", "You are not valid, guy!");
-                okResponse(response, pageVariables, currentlyPage);
+                catch (DataServiceException | EmptyDataException e)
+                {
+                    Map<String, Object> pageVariables = new HashMap<>();
+                    String currentlyPage = "authorize.tml";
+                    pageVariables.put("ErrorMessage", "You are not valid, guy!");
+                    okResponse(response, pageVariables, currentlyPage);
+                }
                 break;
             }
             case "/regist":
             {
                 String login = request.getParameter("login");
                 String password = request.getParameter("password");
-                if(!login.isEmpty() && !password.isEmpty())
+                try
                 {
-                    USERS_.put(login, password);
+                    dataService.isEmptyCredentials(login, password);
+                    dataService.regist(login, password);
                     getUserId(response, request);
                 }
-                Map<String, Object> pageVariables = new HashMap<>();
-                String currentlyPage = "registration.tml";
-                pageVariables.put("ErrorMessage", "You must write here anything, dear!");
-                okResponse(response, pageVariables, currentlyPage);
+                catch (DataServiceException | EmptyDataException e)
+                {
+                    Map<String, Object> pageVariables = new HashMap<>();
+                    String currentlyPage = "registration.tml";
+                    pageVariables.put("ErrorMessage", e.getMessage());
+                    okResponse(response, pageVariables, currentlyPage);
+                }
                 break;
 
             }
