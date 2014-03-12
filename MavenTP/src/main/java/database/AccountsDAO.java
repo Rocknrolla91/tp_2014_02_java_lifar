@@ -9,18 +9,12 @@ import org.hibernate.criterion.Restrictions;
  * Created by Alena on 10.03.14.
  */
 public class AccountsDAO implements interfaceDAO {
+
     private SessionFactory sessionFactory;
 
     public AccountsDAO(SessionFactory session)
     {
         this.sessionFactory = session;
-    }
-
-    @Override
-    public AccountsDataSet getAccountById(long id)
-    {
-        Session session = sessionFactory.openSession();
-        return (AccountsDataSet) session.load(AccountsDataSet.class, id);
     }
 
     @Override
@@ -32,7 +26,7 @@ public class AccountsDAO implements interfaceDAO {
     }
 
     @Override
-    public boolean saveAccount(AccountsDataSet dataSet) throws DataServiceException
+    public boolean saveAccount(AccountsDataSet dataSet)
     {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -41,10 +35,6 @@ public class AccountsDAO implements interfaceDAO {
         {
             session.save(dataSet);
             transaction.commit();
-        }
-        catch (ConstraintViolationException e)
-        {
-            throw new DataServiceException("This user already exists");
         }
         catch (HibernateException e)
         {

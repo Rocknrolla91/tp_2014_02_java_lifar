@@ -52,7 +52,7 @@ public class Frontend extends HttpServlet{
         String currentlyPage;
         Map<String, Object> pageVariables = new HashMap<>();
 
-        switch(request.getPathInfo())
+        switch(request.getRequestURI())
         {
             case "/index":
             {
@@ -115,7 +115,7 @@ public class Frontend extends HttpServlet{
                        HttpServletResponse response)
             throws IOException, ServletException
     {
-        switch(request.getPathInfo())
+        switch(request.getRequestURI())
         {
             case "/auth":
             {
@@ -124,7 +124,7 @@ public class Frontend extends HttpServlet{
                 try
                 {
                     dataService.isEmptyCredentials(login, password);
-                    dataService.auth(request, login, password);
+                    dataService.auth(login, password);
                     getUserId(response, request);
                 }
                 catch (DataServiceException | EmptyDataException e)

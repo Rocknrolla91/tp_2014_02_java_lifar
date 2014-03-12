@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
  * Created by Alena on 10.03.14.
  */
 public class DataService {
-    private AtomicLong userIdGenerator = new AtomicLong();
     private AccountsDAO accountsDAO;
 
     public DataService(AccountsDAO dao)
@@ -25,7 +24,7 @@ public class DataService {
     {
         try
         {
-            if(accountsDAO.getAccount(login) != null) throw new DataServiceException("User already exist");
+            if(accountsDAO.getAccount(login) != null) throw new DataServiceException("User already exists");
             accountsDAO.saveAccount(new AccountsDataSet(login, password));
         }
         catch(ConstraintViolationException e)
@@ -34,13 +33,11 @@ public class DataService {
         }
     }
 
-    public void auth(HttpServletRequest request, String login, String password) throws DataServiceException
+    public void auth(String login, String password) throws DataServiceException
     {
         try
         {
             AccountsDataSet account = accountsDAO.getAccount(login);
-            long userId = userIdGenerator.getAndIncrement();
-            request.getSession().setAttribute("userId", userId);
             if(account == null) throw new DataServiceException("User with this login is not found");
             if(!account.getPassword().equals(password)) throw new DataServiceException("Wrong password");
         }

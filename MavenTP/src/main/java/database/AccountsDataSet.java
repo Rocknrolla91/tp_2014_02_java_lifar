@@ -15,32 +15,32 @@ public class AccountsDataSet{
     private long userId;
 
     @Column(name="login")
-    private String username;
+    private String login;
 
     @Column(name="password")
     private String password;
 
     public AccountsDataSet(long userId,
-                           String username,
+                           String login,
                            String password)
     {
         this.userId = userId;
-        this.username = username;
+        this.login = login;
         this.password = password;
     }
 
-    public AccountsDataSet(String username,
+    public AccountsDataSet(String login,
                            String password)
     {
         this.userId = -1;
-        this.username = username;
+        this.login = login;
         this.password = password;
     }
 
     public AccountsDataSet()
     {
         this.userId = -1;
-        this.username = "";
+        this.login = "";
         this.password = "";
     }
 
@@ -51,7 +51,7 @@ public class AccountsDataSet{
 
     public String getLogin()
     {
-        return username;
+        return login;
     }
 
     public  String getPassword()
@@ -66,7 +66,7 @@ public class AccountsDataSet{
 
     public void setUsername(String login)
     {
-        this.username = login;
+        this.login = login;
     }
 
     public void setPassword(String password)
