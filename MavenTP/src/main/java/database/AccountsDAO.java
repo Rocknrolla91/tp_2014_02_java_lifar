@@ -1,45 +1,58 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import exception.DataServiceException;
+import org.hibernate.*;
+import org.hibernate.exception.ConstraintViolationException;
+import org.hibernate.criterion.Restrictions;
 
 /**
- * Created by alena on 10.03.14.
+ * Created by Alena on 10.03.14.
  */
-public class AccountsDAO {
-    private Connection connection;
-    private static final String getAccountQuery = "SELECT * FROM accounts WHERE login = ?";
-    private static final String addAccountQuery = "INSERT INTO accounts(login, password) VALUES(?,?)";
+public class AccountsDAO implements interfaceDAO {
+    private SessionFactory sessionFactory;
 
-    public AccountsDAO(Connection connection)
+    public AccountsDAO(SessionFactory session)
     {
-        this.connection = connection;
+        this.sessionFactory = session;
     }
 
-    public AccountsDataSet getAccount(String login) throws SQLException
+    @Override
+    public AccountsDataSet getAccountById(long id)
     {
-        return Executor.execQuery(connection, new ExecHandler<AccountsDataSet>()
+        Session session = sessionFactory.openSession();
+        return (AccountsDataSet) session.load(AccountsDataSet.class, id);
+    }
+
+    @Override
+    public AccountsDataSet getAccount(String name)
+    {
+        Session session = sessionFactory.openSession();
+        Criteria criteria = session.createCriteria(AccountsDataSet.class);
+        return (AccountsDataSet) criteria.add(Restrictions.eq("login", name)).uniqueResult();
+    }
+
+    @Override
+    public boolean saveAccount(AccountsDataSet dataSet) throws DataServiceException
+    {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        try
         {
-            @Override
-            public AccountsDataSet handle(ResultSet result) throws SQLException
-            {
-                if(result.next())
-                {
-                    return new AccountsDataSet(result.getInt("id"),
-                                                result.getString("login"),
-                                                result.getString("password"));
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }, getAccountQuery, login);
-    }
+            session.save(dataSet);
+            transaction.commit();
+        }
+        catch (ConstraintViolationException e)
+        {
+            throw new DataServiceException("This user already exists");
+        }
+        catch (HibernateException e)
+        {
+            session.close();
+            return false;
+        }
 
-    public boolean saveAccount(AccountsDataSet account) throws SQLException
-    {
-        return Executor.execUpdate(connection, addAccountQuery, account.getLogin(), account.getPassword());
+        session.close();
+        return true;
     }
 }

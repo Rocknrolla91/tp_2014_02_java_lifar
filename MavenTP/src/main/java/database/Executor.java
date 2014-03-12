@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 
 
 /**
- * Created by alena on 10.03.14.
+ * Created by Alena on 10.03.14.
  */
 public class Executor {
     public static <T> T execQuery(Connection connection,

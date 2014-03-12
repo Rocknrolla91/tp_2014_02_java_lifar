@@ -1,3 +1,4 @@
+import database.AccountsDAO;
 import database.DataService;
 import exception.DataServiceException;
 import exception.EmptyDataException;
@@ -22,9 +23,9 @@ public class Frontend extends HttpServlet{
     private AtomicLong userIdGen = new AtomicLong(0);
     public DataService dataService;
 
-    public Frontend()
+    public Frontend(DataService dataService)
     {
-        dataService = new DataService();
+        this.dataService = dataService;
     }
 
     public static String getTime() {
@@ -123,7 +124,7 @@ public class Frontend extends HttpServlet{
                 try
                 {
                     dataService.isEmptyCredentials(login, password);
-                    dataService.auth(login, password);
+                    dataService.auth(request, login, password);
                     getUserId(response, request);
                 }
                 catch (DataServiceException | EmptyDataException e)

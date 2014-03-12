@@ -1,11 +1,23 @@
 package database;
 
+import javax.persistence.*;
+
 /**
- * Created by alena on 10.03.14.
+ * Created by Alena on 10.03.14.
  */
-public class AccountsDataSet {
+@Entity
+@Table(name="accounts")
+public class AccountsDataSet{
+
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
+
+    @Column(name="login")
     private String username;
+
+    @Column(name="password")
     private String password;
 
     public AccountsDataSet(long userId,
@@ -20,8 +32,16 @@ public class AccountsDataSet {
     public AccountsDataSet(String username,
                            String password)
     {
+        this.userId = -1;
         this.username = username;
         this.password = password;
+    }
+
+    public AccountsDataSet()
+    {
+        this.userId = -1;
+        this.username = "";
+        this.password = "";
     }
 
     public long getUserId()
@@ -37,5 +57,20 @@ public class AccountsDataSet {
     public  String getPassword()
     {
         return password;
+    }
+
+    public void setUserId(long id)
+    {
+        this.userId = id;
+    }
+
+    public void setUsername(String login)
+    {
+        this.username = login;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
     }
 }
