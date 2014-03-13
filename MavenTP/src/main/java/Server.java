@@ -1,4 +1,3 @@
-
 import database.AccountsDAO;
 import database.DataService;
 import database.DatabaseConnector;
@@ -46,8 +45,6 @@ public class Server {
         resourceHandler.setResourceBase("static");
 
         RewriteHandler rewriteHandler = new RewriteHandler();
-        rewriteHandler.setRewriteRequestURI(true);
-        rewriteHandler.setRewritePathInfo(true);
         rewriteHandler.setOriginalPathAttribute("requestedPath");
 
         RedirectRegexRule regRule = new RedirectRegexRule();
