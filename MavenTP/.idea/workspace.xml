@@ -65,10 +65,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Frontend.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Frontend.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Frontend.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="126" column="37" selection-start="4335" selection-end="4335" vertical-scroll-proportion="-0.0063897762" vertical-offset="1654" max-vertical-offset="2280">
+            <state line="127" column="49" selection-start="4402" selection-end="4402" vertical-scroll-proportion="0.0" vertical-offset="2159" max-vertical-offset="2856">
               <folding />
             </state>
           </provider>
@@ -77,7 +77,7 @@
       <file leaf-file-name="AccountsDAO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/database/AccountsDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="765">
+            <state line="18" column="0" selection-start="424" selection-end="424" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="918">
               <folding />
             </state>
           </provider>
@@ -86,7 +86,7 @@
       <file leaf-file-name="SessionFactoryImpl.class" pinned="false" current="false" current-in-tab="false">
         <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.1.Final/hibernate-core-4.3.1.Final.jar!/org/hibernate/internal/SessionFactoryImpl.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="33" selection-start="5139" selection-end="5139" vertical-scroll-proportion="-5.48" vertical-offset="748" max-vertical-offset="4410">
+            <state line="60" column="33" selection-start="5139" selection-end="5139" vertical-scroll-proportion="0.0" vertical-offset="1020" max-vertical-offset="5015">
               <folding />
             </state>
           </provider>
@@ -95,7 +95,7 @@
       <file leaf-file-name="PageGenerator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/PageGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="9" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+            <state line="25" column="9" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="595">
               <folding />
             </state>
           </provider>
@@ -104,16 +104,16 @@
       <file leaf-file-name="DataService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/database/DataService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
+            <state line="15" column="0" selection-start="350" selection-end="350" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1037">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Server.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Server.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="57" selection-start="695" selection-end="695" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="975">
+            <state line="14" column="3" selection-start="506" selection-end="506" vertical-scroll-proportion="-0.072383076" vertical-offset="133" max-vertical-offset="1054">
               <folding />
             </state>
           </provider>
@@ -122,7 +122,7 @@
       <file leaf-file-name="interfaceDAO.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/database/interfaceDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="48" selection-start="262" selection-end="262" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+            <state line="8" column="31" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="306">
               <folding />
             </state>
           </provider>
@@ -131,7 +131,7 @@
       <file leaf-file-name="DataServiceException.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/exception/DataServiceException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="14" selection-start="38" selection-end="38" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+            <state line="3" column="14" selection-start="38" selection-end="38" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="289">
               <folding />
             </state>
           </provider>
@@ -140,7 +140,7 @@
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="32" selection-start="1375" selection-end="1382" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1095">
+            <state line="42" column="32" selection-start="1375" selection-end="1382" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1241">
               <folding />
             </state>
           </provider>
@@ -149,7 +149,7 @@
       <file leaf-file-name="DatabaseConnector.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/database/DatabaseConnector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="13" selection-start="264" selection-end="264" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+            <state line="30" column="78" selection-start="1153" selection-end="1153" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="816">
               <folding />
             </state>
           </provider>
@@ -185,13 +185,13 @@
         <option value="$PROJECT_DIR$/src/main/java/database/DatabaseConnection.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server.java" />
-        <option value="$PROJECT_DIR$/src/main/java/database/DatabaseConnector.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/ExecHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/AccountsDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/interfaceDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/AccountsDataSet.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/DataService.java" />
         <option value="$PROJECT_DIR$/src/main/java/Frontend.java" />
+        <option value="$PROJECT_DIR$/src/main/java/database/DatabaseConnector.java" />
       </list>
     </option>
   </component>
@@ -203,10 +203,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="24" />
-    <option name="width" value="1301" />
-    <option name="height" value="744" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -692,11 +692,13 @@
       <workItem from="1394622701415" duration="201000" />
       <workItem from="1394634909707" duration="1939000" />
       <workItem from="1394646290721" duration="1762000" />
+      <workItem from="1394733721619" duration="781000" />
+      <workItem from="1394822712617" duration="31000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74728000" />
+    <option name="totallyTimeSpent" value="75540000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -719,15 +721,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288889" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29777777" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -736,17 +737,18 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34361234" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298122" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23212913" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33481482" sideWeight="0.49961567" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11128861" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5573593" sideWeight="0.49961567" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288889" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34361234" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -803,6 +805,27 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/exception/DataServiceException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="14" selection-start="38" selection-end="38" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="289">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="32" selection-start="1375" selection-end="1382" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1241">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/DatabaseConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="3" selection-start="278" selection-end="278" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="850">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/AccountsDataSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="0" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0" vertical-offset="646" max-vertical-offset="799">
@@ -1035,23 +1058,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="57" selection-start="695" selection-end="695" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="975">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/interfaceDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="48" selection-start="262" selection-end="262" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+        <state line="8" column="31" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="306">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.1.Final/hibernate-core-4.3.1.Final.jar!/org/hibernate/internal/SessionFactoryImpl.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="33" selection-start="5139" selection-end="5139" vertical-scroll-proportion="-5.48" vertical-offset="748" max-vertical-offset="4410">
+        <state line="60" column="33" selection-start="5139" selection-end="5139" vertical-scroll-proportion="0.0" vertical-offset="1020" max-vertical-offset="5015">
           <folding />
         </state>
       </provider>
@@ -1065,28 +1081,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/AccountsDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0" vertical-offset="174" max-vertical-offset="765">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/database/DatabaseConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="264" selection-end="264" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+        <state line="18" column="0" selection-start="424" selection-end="424" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="918">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/DataService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="387" selection-end="387" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
+        <state line="15" column="0" selection-start="350" selection-end="350" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1037">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Frontend.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="37" selection-start="4335" selection-end="4335" vertical-scroll-proportion="-0.0063897762" vertical-offset="1654" max-vertical-offset="2280">
+        <state line="127" column="49" selection-start="4402" selection-end="4402" vertical-scroll-proportion="0.0" vertical-offset="1686" max-vertical-offset="2584">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/database/DatabaseConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="78" selection-start="1153" selection-end="1153" vertical-scroll-proportion="0.0" vertical-offset="94" max-vertical-offset="714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="3" selection-start="506" selection-end="506" vertical-scroll-proportion="-0.072383076" vertical-offset="133" max-vertical-offset="1054">
           <folding />
         </state>
       </provider>
