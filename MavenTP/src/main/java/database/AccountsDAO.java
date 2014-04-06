@@ -1,8 +1,6 @@
 package database;
 
-import exception.DataServiceException;
 import org.hibernate.*;
-import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -44,5 +42,23 @@ public class AccountsDAO implements interfaceDAO {
 
         session.close();
         return true;
+    }
+
+    @Override
+    public void deleteAccount(String login)
+    {
+        AccountsDataSet account = getAccount(login);
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        try
+        {
+            session.delete(account);
+            transaction.commit();
+        }
+        catch (HibernateException e)
+        {
+            session.close();
+        }
+        session.close();
     }
 }

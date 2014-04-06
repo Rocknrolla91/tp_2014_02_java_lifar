@@ -1,7 +1,10 @@
-import database.AccountsDAO;
-import database.DataService;
-import exception.DataServiceException;
+package frontend;
+
+import database.AccountServiceImpl;
+import database.AccountSession;
+import exception.AccountServiceException;
 import exception.EmptyDataException;
+import templator.PageGenerator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,11 +24,18 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class Frontend extends HttpServlet{
     private AtomicLong userIdGen = new AtomicLong(0);
-    public DataService dataService;
+    public AccountServiceImpl accountServiceImpl;
+    private Map<String, AccountSession> sessions;
 
-    public Frontend(DataService dataService)
+    public void setSession(AccountSession session)
     {
-        this.dataService = dataService;
+        AccountSession accountSession = sessions.get(session.getSessionId());
+        if(accountSession != null) {accountSession.updateSession(session);}
+    }
+
+    public Frontend(AccountServiceImpl accountServiceImpl)
+    {
+        this.accountServiceImpl = accountServiceImpl;
     }
 
     public static String getTime() {
@@ -123,11 +133,11 @@ public class Frontend extends HttpServlet{
                 String password = request.getParameter("password");
                 try
                 {
-                    dataService.isEmptyCredentials(login, password);
-                    dataService.auth(login, password);
+                    accountServiceImpl.isEmptyCredentials(login, password);
+                    accountServiceImpl.auth(login, password);
                     getUserId(response, request);
                 }
-                catch (DataServiceException | EmptyDataException e)
+                catch (AccountServiceException | EmptyDataException e)
                 {
                     Map<String, Object> pageVariables = new HashMap<>();
                     String currentlyPage = "authorize.tml";
@@ -142,11 +152,11 @@ public class Frontend extends HttpServlet{
                 String password = request.getParameter("password");
                 try
                 {
-                    dataService.isEmptyCredentials(login, password);
-                    dataService.regist(login, password);
+                    accountServiceImpl.isEmptyCredentials(login, password);
+                    accountServiceImpl.regist(login, password);
                     getUserId(response, request);
                 }
-                catch (DataServiceException | EmptyDataException e)
+                catch (AccountServiceException | EmptyDataException e)
                 {
                     Map<String, Object> pageVariables = new HashMap<>();
                     String currentlyPage = "registration.tml";

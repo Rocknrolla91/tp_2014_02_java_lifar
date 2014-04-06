@@ -1,6 +1,10 @@
+package gameServer;
+
 import database.AccountsDAO;
-import database.DataService;
+import database.AccountServiceImpl;
 import database.DatabaseConnector;
+import database.DatabaseConnectorMySQL;
+import frontend.Frontend;
 import org.eclipse.jetty.rewrite.handler.RedirectRegexRule;
 import org.eclipse.jetty.rewrite.handler.RewriteHandler;
 import org.eclipse.jetty.server.handler.HandlerList;
@@ -19,7 +23,7 @@ public class Server {
     private DatabaseConnector databaseConnector;
 
     public Server() {
-        this.databaseConnector = new DatabaseConnector();
+        this.databaseConnector = new DatabaseConnectorMySQL();
     }
 
     public void run() throws Exception {
@@ -33,8 +37,8 @@ public class Server {
 
     private HandlerList getServerHandlers() {
         AccountsDAO userDAO = new AccountsDAO(databaseConnector.getSessionFactory());
-        DataService dataService = new DataService(userDAO);
-        Frontend frontend = new Frontend(dataService);
+        AccountServiceImpl accountServiceImpl = new AccountServiceImpl(userDAO);
+        Frontend frontend = new Frontend(accountServiceImpl);
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(frontend), "/regist");

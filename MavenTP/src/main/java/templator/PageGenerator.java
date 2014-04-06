@@ -1,3 +1,4 @@
+package templator;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
