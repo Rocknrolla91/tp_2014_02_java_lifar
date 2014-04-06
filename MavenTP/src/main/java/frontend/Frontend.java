@@ -23,8 +23,6 @@ import java.util.concurrent.atomic.AtomicLong;
  * Created by Alena on 2/20/14.
  */
 public class Frontend extends HttpServlet implements Abonent, Runnable{
-    private AtomicLong userIdGen = new AtomicLong(0);
-    //public AccountServiceImpl accountServiceImpl;
     private MessageSystem messageSystem;
     private Address address;
     private Map<String, AccountSession> sessions = new ConcurrentHashMap<>();

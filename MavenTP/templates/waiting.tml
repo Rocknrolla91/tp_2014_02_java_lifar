@@ -8,6 +8,7 @@
     }
 </script>
 <body onload='setInterval(function(){goIndex()}, ${refreshPeriod} );'>
-<p style="color:red;">${InformationMessage}</p>
+<p style="color:blue; font-size:18pt;">${InformationMessage}</p>
+<img src="/wait.jpg" style="max-height:200px"/>
 </body>
 </head>

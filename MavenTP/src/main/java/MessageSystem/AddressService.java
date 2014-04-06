@@ -17,11 +17,6 @@ public class AddressService {
         this.accountService = accountService;
     }
 
-    public Address getFrontend()
-    {
-        return frontend;
-    }
-
     public void setFrontend(Address frontend)
     {
         this.frontend = frontend;
