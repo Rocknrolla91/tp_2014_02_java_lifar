@@ -1,4 +1,4 @@
-package MessageSystem;
+package messageSystem;
 
 import database.AccountService;
 import database.AccountSession;
@@ -10,7 +10,7 @@ public class MessageToAuth extends MessageToAccountService {
     private String sessionId;
     private String login;
     private String password;
-    
+
     public MessageToAuth(Address from, Address to,
                          String sessionId, String login, String password)
     {

@@ -5,9 +5,13 @@
     <body>
         <div>
             <#if ErrorMessage??>
-            <p style="color:red;">${ErrorMessage}</p>
-            <img src="/auth_err.png" style="max-height:200px"/>
-        </#if>
+                <p style="color:red;">${ErrorMessage}</p>
+                <img src="/auth_err.png" style="max-height:200px"/>
+            </#if>
+
+            <#if InformationMessage??>
+                <p style="color:blue;">${InformationMessage}</p>
+            </#if>
         </div>
         <form method="post">
             <label for="login" title="Username:">

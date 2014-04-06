@@ -1,4 +1,4 @@
-package MessageSystem;
+package messageSystem;
 
 import frontend.Frontend;
 import database.AccountSession;

@@ -1,4 +1,4 @@
-package MessageSystem;
+package messageSystem;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +33,7 @@ public class MessageSystem {
         messageQueue.add(message);
     }
 
-    public void execFroAbonent(Abonent abonent)
+    public void execForAbonent(Abonent abonent)
     {
         Queue<Message> messageQueue = messages.get(abonent.getAddress());
         if(messageQueue == null) {return;}

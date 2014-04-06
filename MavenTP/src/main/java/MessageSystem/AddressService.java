@@ -1,4 +1,4 @@
-package MessageSystem;
+package messageSystem;
 
 /**
  * Created by Alena on 4/6/14.
@@ -22,7 +22,7 @@ public class AddressService {
         return frontend;
     }
 
-    public void setFrontend()
+    public void setFrontend(Address frontend)
     {
         this.frontend = frontend;
     }

@@ -1,8 +1,8 @@
 package database;
 
-import MessageSystem.MessageSystem;
-import MessageSystem.Abonent;
-import MessageSystem.Address;
+import messageSystem.MessageSystem;
+import messageSystem.Abonent;
+import messageSystem.Address;
 import exception.AccountServiceException;
 import exception.EmptyDataException;
 import exception.ExceptionMessageClass;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 /**
  * Created by Alena on 10.03.14.
  */
-public class AccountServiceImpl implements AccountService, Abonent {
+public class AccountServiceImpl implements AccountService, Abonent, Runnable {
     private AccountsDAO accountsDAO;
     private MessageSystem messageSystem;
     private Address address;
@@ -22,7 +22,7 @@ public class AccountServiceImpl implements AccountService, Abonent {
     public AccountServiceImpl(AccountsDAO dao, MessageSystem messageSystem)
     {
         this.accountsDAO = dao;
-        this.messageSystem = messageSystem;
+        setMessageSystem(messageSystem);
     }
 
     @Override
@@ -57,12 +57,6 @@ public class AccountServiceImpl implements AccountService, Abonent {
         return new AccountSession(sessionId, account.getUserId(), login, OK_SESSION, false);
     }
 
-    public void isEmptyCredentials(String login, String password) throws EmptyDataException
-    {
-        if(login.isEmpty() || password.isEmpty())
-            throw new EmptyDataException(ExceptionMessageClass.EMPTY);
-    }
-
     @Override
     public void deleteAccount(String login) throws AccountServiceException, SQLException
     {
@@ -93,6 +87,19 @@ public class AccountServiceImpl implements AccountService, Abonent {
         this.messageSystem = messageSystem;
         this.address = new Address();
         messageSystem.addService(this);
-        messageSystem.getAddressService().setAccountService(address);
+        messageSystem.getAddressService().setAccountService(this.address);
+    }
+
+    @Override
+    public void run()
+    {
+        while (true) {
+            messageSystem.execForAbonent(this);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

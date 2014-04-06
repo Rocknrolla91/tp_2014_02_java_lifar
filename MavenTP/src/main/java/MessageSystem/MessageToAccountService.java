@@ -1,4 +1,4 @@
-package MessageSystem;
+package messageSystem;
 
 import database.AccountService;
 import exception.AccountServiceException;

@@ -48,6 +48,8 @@ public class AccountSession {
         return this.sessionStatus;
     }
 
+    public boolean getErrorSession() { return this.errorSession; }
+
     public void updateSession(AccountSession accountSession)
     {
         this.sessionId = accountSession.getSessionId();
