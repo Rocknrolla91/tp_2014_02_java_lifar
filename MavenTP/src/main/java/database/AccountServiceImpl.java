@@ -94,7 +94,7 @@ public class AccountServiceImpl implements AccountService, Abonent, Runnable {
     public void run()
     {
         while (true) {
-            messageSystem.execForAbonent(this);
+            this.getMessageSystem().execForAbonent(this);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

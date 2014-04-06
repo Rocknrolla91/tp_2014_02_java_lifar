@@ -37,12 +37,10 @@ public class Server {
         MessageSystem messageSystem = MessageSystem.getInstance();
         AccountsDAO userDAO = new AccountsDAO(databaseConnector.getSessionFactory());
         AccountService accountService1 = new AccountServiceImpl(userDAO, messageSystem);
-        AccountService accountService2 = new AccountServiceImpl(userDAO, messageSystem);
         Frontend frontend = new Frontend(messageSystem);
 
         (new Thread(frontend)).start();
         (new Thread(accountService1)).start();
-        (new Thread(accountService2)).start();
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(frontend), "/regist");

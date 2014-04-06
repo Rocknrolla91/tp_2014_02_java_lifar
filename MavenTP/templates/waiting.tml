@@ -1,0 +1,13 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<script>
+    function goIndex()
+    {
+        location = "http://localhost:8080/index"
+    }
+</script>
+<body onload='setInterval(function(){goIndex()}, ${refreshPeriod} );'>
+<p style="color:red;">${InformationMessage}</p>
+</body>
+</head>

@@ -9,9 +9,6 @@
         <img src="/auth_err.png" style="max-height:200px"/>
     </#if>
 
-    <#if InformationMessage??>
-        <p style="color:blue;">${InformationMessage}</p>
-    </#if>
     </div>
 
     <form method="post">

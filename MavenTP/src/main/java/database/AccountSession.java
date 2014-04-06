@@ -8,15 +8,15 @@ public class AccountSession {
     private Long accountId;
     private String login;
     private String sessionStatus;
-    private boolean errorSession;
+    private boolean error;
 
-    public AccountSession(String sessionId, Long accountId, String login, String sessionStatus, boolean errorSession)
+    public AccountSession(String sessionId, Long accountId, String login, String sessionStatus, boolean error)
     {
         this.sessionId = sessionId;
         this.accountId = accountId;
         this.login = login;
         this.sessionStatus = sessionStatus;
-        this.errorSession = errorSession;
+        this.error = error;
     }
 
     public AccountSession(String sessionId)
@@ -48,7 +48,7 @@ public class AccountSession {
         return this.sessionStatus;
     }
 
-    public boolean getErrorSession() { return this.errorSession; }
+    public boolean getError() { return this.error; }
 
     public void updateSession(AccountSession accountSession)
     {
@@ -56,5 +56,6 @@ public class AccountSession {
         this.accountId = accountSession.getAccountId();
         this.login = accountSession.getLogin();
         this.sessionStatus = accountSession.getSessionStatus();
+        this.error = accountSession.getError();
     }
 }

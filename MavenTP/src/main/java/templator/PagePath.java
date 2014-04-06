@@ -8,4 +8,5 @@ public class PagePath {
     public static final String REGIST_P = "/regist";
     public static final String TIMER_P = "/timer";
     public static final String INDEX_P = "/index";
+    public static final String WAIT_P = "/wait";
 }

@@ -8,6 +8,7 @@ import org.hibernate.service.ServiceRegistry;
 /**
  * Created by Alena on 10.03.14.
  */
+
 public class DatabaseConnectorMySQL implements DatabaseConnector {
 
     private Configuration configuration = new Configuration();
@@ -38,6 +39,4 @@ public class DatabaseConnectorMySQL implements DatabaseConnector {
         ServiceRegistry serviceRegistry = builder.build();
         return configuration.buildSessionFactory(serviceRegistry);
     }
-
-
 }

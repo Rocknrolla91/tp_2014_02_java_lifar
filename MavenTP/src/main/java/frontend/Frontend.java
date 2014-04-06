@@ -33,7 +33,10 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
     public void setSession(AccountSession session)
     {
         AccountSession accountSession = sessions.get(session.getSessionId());
-        if(accountSession != null) {accountSession.updateSession(session);}
+        if(accountSession != null)
+        {
+            accountSession.updateSession(session);
+        }
     }
 
     public Frontend(MessageSystem messageSystem)
@@ -67,13 +70,13 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
         HttpSession session = request.getSession();
         AccountSession accountSession = sessions.get(session.getId());
         getPageVariablesFromSessionStatus(accountSession,pageVariables);
+        Long userId = (accountSession != null) ? accountSession.getAccountId() : null;
 
         switch(request.getRequestURI())
         {
             case PagePath.INDEX_P:
             {
-                Long userId = (accountSession != null) ? accountSession.getAccountId() : null;
-                if(userId == null || accountSession.getErrorSession()) {
+                if(userId == null || accountSession.getError()) {
                     response.sendRedirect(PagePath.AUTH_P);
                 } else {
                     currentlyPage = "index.tml";
@@ -90,8 +93,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
             }
             case PagePath.TIMER_P:
             {
-                Long userId = (accountSession != null) ? accountSession.getAccountId() : null;
-                if(userId == null || accountSession.getErrorSession()) {
+                if(userId == null || accountSession.getError()) {
                     response.sendRedirect(PagePath.AUTH_P);
                 } else {
                     currentlyPage = "timer.tml";
@@ -108,28 +110,29 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
                 okResponse(response, pageVariables, currentlyPage);
                 break;
             }
+            case PagePath.WAIT_P:
+            {
+                currentlyPage = "waiting.tml";
+                pageVariables.put("refreshPeriod", "3000");
+                okResponse(response, pageVariables, currentlyPage);
+                break;
+            }
             default:
                 response.sendRedirect(PagePath.INDEX_P);
                 break;
         }
-    }
-    private void getUserId(HttpServletResponse response,
-                           HttpServletRequest request)
-            throws IOException, ServletException
-    {
-        HttpSession session = request.getSession();
-        Long userId = userIdGen.getAndIncrement();
-        session.setAttribute("userId", userId);
-        response.sendRedirect("/timer");
-        return;
     }
 
     private void getPageVariablesFromSessionStatus(AccountSession accountSession,  Map<String, Object> pageVariables)
     {
         if(accountSession == null)
             return;
-        if(accountSession.getErrorSession())
+        if(accountSession.getError())
             pageVariables.put("ErrorMessage", accountSession.getSessionStatus());
+        else
+        {
+            pageVariables.put("InformationMessage", accountSession.getSessionStatus());
+        }
     }
 
     @Override
@@ -179,7 +182,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
         Address accountServiceAddress = this.getMessageSystem().getAddressService().getAccountService();
         this.getMessageSystem().sendMessage(new MessageToAuth(thisAddress, accountServiceAddress,
                 sessionId, login, password));
-        response.sendRedirect(PagePath.INDEX_P);
+        response.sendRedirect(PagePath.WAIT_P);
     }
 
     private void doRegist(HttpServletRequest request, HttpServletResponse response)
@@ -194,7 +197,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
         Address accountServiceAddress = this.getMessageSystem().getAddressService().getAccountService();
         this.getMessageSystem().sendMessage(new MessageToRegist(thisAddress, accountServiceAddress,
                 sessionId, login, password));
-        response.sendRedirect(PagePath.TIMER_P);
+        response.sendRedirect(PagePath.WAIT_P);
     }
 
     @Override
@@ -222,7 +225,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
     public void run()
     {
         while (true) {
-            messageSystem.execForAbonent(this);
+            this.getMessageSystem().execForAbonent(this);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
