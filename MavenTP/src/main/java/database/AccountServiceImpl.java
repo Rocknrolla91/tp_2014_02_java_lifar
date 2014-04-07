@@ -4,7 +4,6 @@ import messageSystem.MessageSystem;
 import messageSystem.Abonent;
 import messageSystem.Address;
 import exception.AccountServiceException;
-import exception.EmptyDataException;
 import exception.ExceptionMessageClass;
 import org.hibernate.exception.ConstraintViolationException;
 
@@ -14,14 +13,14 @@ import java.sql.SQLException;
  * Created by Alena on 10.03.14.
  */
 public class AccountServiceImpl implements AccountService, Abonent, Runnable {
-    private AccountsDAO accountsDAO;
+    private AccountsDAOImpl accountsDAOImpl;
     private MessageSystem messageSystem;
     private Address address;
     public static final String OK_SESSION = "It's ok!";
 
-    public AccountServiceImpl(AccountsDAO dao, MessageSystem messageSystem)
+    public AccountServiceImpl(AccountsDAOImpl dao, MessageSystem messageSystem)
     {
-        this.accountsDAO = dao;
+        this.accountsDAOImpl = dao;
         setMessageSystem(messageSystem);
     }
 
@@ -30,8 +29,8 @@ public class AccountServiceImpl implements AccountService, Abonent, Runnable {
     {
         try
         {
-            if(accountsDAO.getAccount(login) != null) throw new AccountServiceException(ExceptionMessageClass.EXIST_USER);
-            accountsDAO.saveAccount(new AccountsDataSet(login, password));
+            if(accountsDAOImpl.getAccount(login) != null) throw new AccountServiceException(ExceptionMessageClass.EXIST_USER);
+            accountsDAOImpl.saveAccount(new AccountsDataSet(login, password));
             return auth(sessionId, login, password);
         }
         catch(ConstraintViolationException e)
@@ -43,7 +42,7 @@ public class AccountServiceImpl implements AccountService, Abonent, Runnable {
     @Override
     public AccountSession auth(String sessionId, String login, String password) throws AccountServiceException
     {
-        AccountsDataSet account = accountsDAO.getAccount(login);
+        AccountsDataSet account = accountsDAOImpl.getAccount(login);
         try
         {
             if(account == null) throw new AccountServiceException(ExceptionMessageClass.INVALID_LOGIN);
@@ -61,7 +60,7 @@ public class AccountServiceImpl implements AccountService, Abonent, Runnable {
     {
         try
         {
-            accountsDAO.deleteAccount(login);
+            accountsDAOImpl.deleteAccount(login);
         }
         catch (Exception e)
         {

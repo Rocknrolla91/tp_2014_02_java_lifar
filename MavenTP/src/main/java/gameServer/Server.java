@@ -35,7 +35,7 @@ public class Server {
 
     private HandlerList getServerHandlers() {
         MessageSystem messageSystem = MessageSystem.getInstance();
-        AccountsDAO userDAO = new AccountsDAO(databaseConnector.getSessionFactory());
+        AccountsDAOImpl userDAO = new AccountsDAOImpl(databaseConnector.getSessionFactory());
         AccountService accountService1 = new AccountServiceImpl(userDAO, messageSystem);
         Frontend frontend = new Frontend(messageSystem);
 
