@@ -28,17 +28,16 @@ public class AccountServiceImpl implements AccountService, Abonent, Runnable {
     @Override
     public AccountSession regist(String sessionId, String login, String password) throws AccountServiceException
     {
-        Long userId = accountsDAO.getAccount(login).getUserId();
         try
         {
             if(accountsDAO.getAccount(login) != null) throw new AccountServiceException(ExceptionMessageClass.EXIST_USER);
             accountsDAO.saveAccount(new AccountsDataSet(login, password));
+            return auth(sessionId, login, password);
         }
         catch(ConstraintViolationException e)
         {
             throw new AccountServiceException(e.getMessage());
         }
-        return new AccountSession(sessionId, userId, login, OK_SESSION, false);
     }
 
     @Override

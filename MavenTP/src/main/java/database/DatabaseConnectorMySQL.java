@@ -30,7 +30,7 @@ public class DatabaseConnectorMySQL implements DatabaseConnector {
         configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
         configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/mydb");
         configuration.setProperty("hibernate.connection.username", "root");
-        configuration.setProperty("hibernate.connection.password", "vodolaz456");
+        configuration.setProperty("hibernate.connection.password", "vodolaz");
         configuration.setProperty("hibernate.show_sql", "true");
         configuration.setProperty("hibernate.hbm2ddl.auto", "validate");
         setDataSets();
