@@ -21,12 +21,10 @@ public abstract class MessageToAccountService extends Message{
         if(abonent instanceof AccountService)
             try {
                 exec((AccountService) abonent);
-            } catch (AccountServiceException e) {
-                e.printStackTrace();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
     }
 
-    public abstract void exec(AccountService accountService) throws AccountServiceException, SQLException;
+    public abstract void exec(AccountService accountService) throws SQLException;
 }

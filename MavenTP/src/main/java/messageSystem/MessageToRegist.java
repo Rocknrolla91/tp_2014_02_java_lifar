@@ -3,6 +3,8 @@ package messageSystem;
 import database.AccountService;
 import database.AccountSession;
 
+import java.sql.SQLException;
+
 /**
  * Created by Alena on 4/6/14.
  */
@@ -21,19 +23,10 @@ public class MessageToRegist extends MessageToAccountService {
     }
 
     @Override
-    public void exec(AccountService accountService)
+    public void exec(AccountService accountService) throws SQLException
     {
-        try
-        {
             AccountSession accountSession = accountService.regist(this.sessionId, this.login, this.password);
             Message back = new MessageToSetSession(getTo(), getFrom(), accountSession);
             accountService.getMessageSystem().sendMessage(back);
-        }
-        catch (Exception e)
-        {
-            AccountSession accountSession = AccountSession.getInvalidSession(sessionId, e.getMessage());
-            Message back = new MessageToSetSession(getTo(), getFrom(), accountSession);
-            accountService.getMessageSystem().sendMessage(back);
-        }
     }
 }

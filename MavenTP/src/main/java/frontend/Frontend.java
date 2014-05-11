@@ -1,5 +1,6 @@
 package frontend;
 
+import database.AccountSessionStatus;
 import exception.EmptyDataException;
 import exception.ExceptionMessageClass;
 import messageSystem.*;
@@ -18,6 +19,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
+
+/*
+избавиться от исключений
+*/
 
 /**
  * Created by Alena on 2/20/14.
@@ -144,7 +149,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
             case PagePath.AUTH_P:
                 try
                 {
-                    doAuth(request, response);
+                    doAuth(request, response); //return boolean
                 }
                 catch (EmptyDataException e)
                 {

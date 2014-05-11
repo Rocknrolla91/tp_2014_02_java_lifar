@@ -25,38 +25,41 @@ public class AccountServiceImpl implements AccountService, Abonent, Runnable {
     }
 
     @Override
-    public AccountSession regist(String sessionId, String login, String password) throws AccountServiceException
+    public AccountSession regist(String sessionId, String login, String password) throws SQLException
     {
         try
         {
-            if(accountsDAOImpl.getAccount(login) != null) throw new AccountServiceException(ExceptionMessageClass.EXIST_USER);
+            if(accountsDAOImpl.getAccount(login) != null)
+                return AccountSession.getInvalidSession(sessionId, AccountSessionStatus.EXIST_USER);
             accountsDAOImpl.saveAccount(new AccountsDataSet(login, password));
             return auth(sessionId, login, password);
         }
-        catch(ConstraintViolationException e)
+        catch(ConstraintViolationException ignored)
         {
-            throw new AccountServiceException(e.getMessage());
+            return AccountSession.getInvalidSession(sessionId, AccountSessionStatus.DB_ERROR);
         }
     }
 
     @Override
-    public AccountSession auth(String sessionId, String login, String password) throws AccountServiceException
+    public AccountSession auth(String sessionId, String login, String password) throws SQLException
     {
         AccountsDataSet account = accountsDAOImpl.getAccount(login);
         try
         {
-            if(account == null) throw new AccountServiceException(ExceptionMessageClass.INVALID_LOGIN);
-            if(!account.getPassword().equals(password)) throw new AccountServiceException(ExceptionMessageClass.INVALID_PASS);
+            if(account == null)
+                return AccountSession.getInvalidSession(sessionId, AccountSessionStatus.INVALID_LOGIN);
+            if(!account.getPassword().equals(password))
+                return AccountSession.getInvalidSession(sessionId, AccountSessionStatus.INVALID_PASS);
         }
         catch (ConstraintViolationException e)
         {
-            throw new AccountServiceException(e.getMessage());
+            return AccountSession.getInvalidSession(sessionId, AccountSessionStatus.DB_ERROR);
         }
         return new AccountSession(sessionId, account.getUserId(), login, OK_SESSION, false);
     }
 
     @Override
-    public void deleteAccount(String login) throws AccountServiceException, SQLException
+    public void deleteAccount(String login) throws SQLException
     {
         try
         {
