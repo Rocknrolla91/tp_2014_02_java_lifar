@@ -9,22 +9,8 @@ import org.hibernate.service.ServiceRegistry;
  * Created by Alena on 10.03.14.
  */
 
-public class DatabaseConnectorMySQL implements DatabaseConnector {
-
-    private Configuration configuration = new Configuration();
-    private SessionFactory sessionFactory = createSessionFactory(configuration);
-    private void setDataSets()
-    {
-        configuration.addAnnotatedClass(AccountsDataSet.class);
-    }
-
-    public SessionFactory getSessionFactory()
-    {
-        return sessionFactory;
-    }
-
-    @Override
-    public SessionFactory createSessionFactory(Configuration configuration)
+public class DatabaseConnectorMySQL extends DatabaseConnector {
+    public void configureConnection(Configuration configuration)
     {
         configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
@@ -33,10 +19,5 @@ public class DatabaseConnectorMySQL implements DatabaseConnector {
         configuration.setProperty("hibernate.connection.password", "vodolaz");
         configuration.setProperty("hibernate.show_sql", "true");
         configuration.setProperty("hibernate.hbm2ddl.auto", "validate");
-        setDataSets();
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
-        builder.applySettings(configuration.getProperties());
-        ServiceRegistry serviceRegistry = builder.build();
-        return configuration.buildSessionFactory(serviceRegistry);
     }
 }

@@ -10,9 +10,9 @@ public class AccountsDAOImpl implements AccountsDAO {
 
     private SessionFactory sessionFactory;
 
-    public AccountsDAOImpl(SessionFactory session)
+    public AccountsDAOImpl(DatabaseConnector databaseConnector)
     {
-        this.sessionFactory = session;
+        this.sessionFactory = databaseConnector.getSessionFactory();
     }
 
     @Override

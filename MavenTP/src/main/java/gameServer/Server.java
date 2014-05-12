@@ -21,7 +21,7 @@ public class Server {
     private DatabaseConnector databaseConnector;
 
     public Server() {
-        this.databaseConnector = new DatabaseConnectorMySQL();
+            this.databaseConnector = new DatabaseConnectorMySQL();
     }
 
     public void run() throws Exception {
@@ -35,8 +35,7 @@ public class Server {
 
     private HandlerList getServerHandlers() {
         MessageSystem messageSystem = MessageSystem.getInstance();
-        AccountsDAOImpl userDAO = new AccountsDAOImpl(databaseConnector.getSessionFactory());
-        AccountService accountService1 = new AccountServiceImpl(userDAO, messageSystem);
+        AccountService accountService1 = new AccountServiceImpl(databaseConnector, messageSystem);
         Frontend frontend = new Frontend(messageSystem);
 
         (new Thread(frontend)).start();

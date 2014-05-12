@@ -3,8 +3,6 @@ package database;
 import messageSystem.MessageSystem;
 import messageSystem.Abonent;
 import messageSystem.Address;
-import exception.AccountServiceException;
-import exception.ExceptionMessageClass;
 import org.hibernate.exception.ConstraintViolationException;
 
 import java.sql.SQLException;
@@ -13,14 +11,16 @@ import java.sql.SQLException;
  * Created by Alena on 10.03.14.
  */
 public class AccountServiceImpl implements AccountService, Abonent, Runnable {
-    private AccountsDAOImpl accountsDAOImpl;
+    private AccountsDAO accountsDAOImpl;
     private MessageSystem messageSystem;
     private Address address;
     public static final String OK_SESSION = "It's ok!";
 
-    public AccountServiceImpl(AccountsDAOImpl dao, MessageSystem messageSystem)
+
+
+    public AccountServiceImpl(DatabaseConnector databaseConnector, MessageSystem messageSystem)
     {
-        this.accountsDAOImpl = dao;
+        this.accountsDAOImpl = new AccountsDAOImpl(databaseConnector);
         setMessageSystem(messageSystem);
     }
 

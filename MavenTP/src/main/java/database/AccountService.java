@@ -1,7 +1,6 @@
 package database;
 
 import messageSystem.Abonent;
-import exception.AccountServiceException;
 
 import java.sql.SQLException;
 
