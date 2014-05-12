@@ -14,10 +14,11 @@ public class DatabaseConnectorH2 extends DatabaseConnector {
     {
         configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         configuration.setProperty("hibernate.connection.driver_class", "org.h2.Driver");
-        configuration.setProperty("hibernate.connection.url", "jdbc:h2:~/test;" + "INIT=RUNSCRIPT FROM '../db/schema.sql';MVCC=true");
+        configuration.setProperty("hibernate.connection.url", "jdbc:h2:testdb/h2test2"/*+ "INIT=RUNSCRIPT FROM '/myDB1.sql';MVCC=true"*/);
         configuration.setProperty("hibernate.connection.username", "sa");
         configuration.setProperty("hibernate.connection.password", "");
         configuration.setProperty("hibernate.show_sql", "true");
-        configuration.setProperty("hibernate.hbm2ddl.auto", "validate");
+       // configuration.setProperty("hibernate.hbm2ddl.auto", "validate");
     }
 }
+
