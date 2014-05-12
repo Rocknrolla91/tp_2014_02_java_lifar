@@ -24,8 +24,8 @@ public class AccountServiceTest {
     private static final String TEST_PASSWORD = StringGenerator.getRandomString(6);
     private static final String TEST_SESSION_ID = UUID.randomUUID().toString();
 
-    private static DatabaseConnector databaseConnector;/* = new DatabaseConnectorH2();*/
-    private static AccountService accountService;/* = new AccountServiceImpl(databaseConnector, messageSystem);*/
+   // private static DatabaseConnector databaseConnector;/* = new DatabaseConnectorH2();*/
+    private static AccountService accountService;
 
     private void deleteTestAccount()
     {
@@ -42,8 +42,6 @@ public class AccountServiceTest {
     @BeforeClass
     public static void setUp() throws Exception
     {
-        databaseConnector = new DatabaseConnectorH2();
-        accountService = new AccountServiceImpl(databaseConnector, messageSystem);
         when(messageSystem.getAddressService()).thenReturn(addressService);
     }
 
@@ -56,6 +54,7 @@ public class AccountServiceTest {
     @Test
     public void testRegistSuccess() throws Exception
     {
+        accountService = new AccountServiceImpl(new DatabaseConnectorH2(), messageSystem);
         AccountSession accountSession = accountService.regist(TEST_SESSION_ID, TEST_LOGIN, TEST_PASSWORD);
         Assert.assertTrue(!accountSession.getError());
     }

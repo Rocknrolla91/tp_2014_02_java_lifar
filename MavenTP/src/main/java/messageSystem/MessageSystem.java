@@ -20,7 +20,12 @@ public class MessageSystem {
         return messageSystem;
     }
 
-    private MessageSystem() {}
+    public MessageSystem() {}
+
+    public MessageSystem(AddressService addressService)
+    {
+        this.addressService = addressService;
+    }
 
     public void addService(Abonent abonent)
     {
