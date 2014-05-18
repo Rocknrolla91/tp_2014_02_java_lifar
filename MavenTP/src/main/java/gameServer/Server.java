@@ -19,18 +19,29 @@ import org.eclipse.jetty.server.Handler;
 public class Server {
     private int portNumber = 8080;
     private DatabaseConnector databaseConnector;
+    org.eclipse.jetty.server.Server server = new org.eclipse.jetty.server.Server(portNumber);
 
     public Server() {
-            this.databaseConnector = new DatabaseConnectorMySQL();
+        this.databaseConnector = new DatabaseConnectorMySQL();
+
+    }
+
+    public Server(int portNumber, DatabaseConnector databaseConnector)
+    {
+        this.portNumber = portNumber;
+        this.databaseConnector = databaseConnector;
     }
 
     public void run() throws Exception {
-        org.eclipse.jetty.server.Server server = new org.eclipse.jetty.server.Server(portNumber);
-
         server.setHandler(getServerHandlers());
 
         server.start();
         server.join();
+    }
+
+    public void stop() throws Exception
+    {
+        server.stop();
     }
 
     private HandlerList getServerHandlers() {

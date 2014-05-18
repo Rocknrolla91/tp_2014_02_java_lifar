@@ -1,5 +1,6 @@
 package frontend;
 
+import com.gargoylesoftware.htmlunit.Page;
 import database.AccountService;
 import database.AccountServiceImpl;
 import database.AccountSession;
@@ -23,6 +24,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockingDetails;
 import static org.mockito.Mockito.when;
 
 /**
@@ -32,59 +34,51 @@ import static org.mockito.Mockito.when;
 ///??? don't care why not work:(
 
 public class FrontendTest {
-    private StringWriter stringWriter = new StringWriter();
-    private static final MessageSystem messageSystem = mock(MessageSystem.class);
-    private static final AddressService addressService = mock(AddressService.class);
-
-    private static final HttpSession session = mock(HttpSession.class);
-    private static final HttpServletRequest request = mock(HttpServletRequest.class);
-    private static final HttpServletResponse response = mock(HttpServletResponse.class);
-    private static final AccountService accountService = mock(AccountServiceImpl.class);
+    private static Frontend frontend;
+    private static HttpServletRequest request;
+    private static HttpServletResponse response;
+    private static HttpSession session;
+    private static StringWriter stringWriter;
+    private static AccountService accountService;
+    private static MessageSystem messageSystem;
+    private static AddressService addressService;
 
     private static final String TEST_LOGIN = StringGenerator.getRandomString(6);
     private static final String TEST_PASSWORD = StringGenerator.getRandomString(6);
     private static final String TEST_SESSION_ID = UUID.randomUUID().toString();
     private static final long TEST_ACCOUNT_ID = new Random().nextLong();
 
-    private Frontend frontend = new Frontend(messageSystem);
-
-    public FrontendTest()
-    {
-        try
-        {
-            when(response.getWriter()).thenReturn(new PrintWriter(stringWriter));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    private void authorized(boolean isAuth, String path)
-    {
-        when(request.getRequestURI()).thenReturn(path);
-        frontend.setSession(new AccountSession(TEST_SESSION_ID, TEST_ACCOUNT_ID, TEST_LOGIN, isAuth ? "It's ok" : "error", isAuth));
-    }
-
-
     @BeforeClass
     public static void setUp() throws Exception
     {
+        accountService = mock(AccountServiceImpl.class);
+        messageSystem = mock(MessageSystem.class);
+        addressService = mock(AddressService.class);
         when(messageSystem.getAddressService()).thenReturn(addressService);
+
+        frontend = new Frontend(messageSystem);
+
+        request = mock(HttpServletRequest.class);
+        response = mock(HttpServletResponse.class);
+        session = mock(HttpSession.class);
+
+        stringWriter = new StringWriter();
+
+        when(response.getWriter()).thenReturn(new PrintWriter(stringWriter));
         when(request.getSession()).thenReturn(session);
         when(session.getId()).thenReturn(TEST_SESSION_ID);
     }
 
     @After
-    public void tearDown() throws Exception {}
+    public void tearDown() throws Exception{}
 
     @Test
-    public void getIndexPageNotAuth() throws Exception
+    public void testGetIndexNotAuth() throws Exception
     {
-        authorized(false, PagePath.INDEX_P);
-        //when(response.sendRedirect(PagePath.AUTH_P)).thenReturn(PagePath.AUTH_P);
+        //when(request.getPathInfo()).thenReturn(PagePath.INDEX_P);
+        when(request.getRequestURI()).thenReturn(PagePath.INDEX_P);
         frontend.doGet(request, response);
-        Assert.assertTrue(stringWriter.toString().contains("auth page"));
-    }
 
+        Assert.assertTrue(stringWriter.toString().contains("sign up"));
+    }
 }
