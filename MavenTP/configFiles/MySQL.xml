@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config name="mysql">
+    <property name="hibernate.disalect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mydb</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">vodolaz456</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.hbm2ddl.auto">validate</property>
+</config>

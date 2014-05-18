@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<class name = "templator.Templates">
+    <INDEX>index.tml</INDEX>
+    <AUTH>authorize.tml</AUTH>
+    <REGIST>registration.tml</REGIST>
+    <TIMER>timer.tml</TIMER>
+    <WAIT>waiting.tml</WAIT>
+</class>

@@ -11,7 +11,7 @@ public class VirtualFileSystemImpl implements VirtualFileSystem {
 
     private String root;
 
-    VirtualFileSystemImpl(String root)
+    public VirtualFileSystemImpl(String root)
     {
         this.root = root;
     }
