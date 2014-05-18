@@ -24,25 +24,28 @@ public class AccountServiceTest {
     private static final String TEST_PASSWORD = StringGenerator.getRandomString(6);
     private static final String TEST_SESSION_ID = UUID.randomUUID().toString();
 
+    private static final String myTestString = "test";
+
    // private static DatabaseConnector databaseConnector;/* = new DatabaseConnectorH2();*/
     private static AccountService accountService;
 
-    private void deleteTestAccount()
+    private boolean deleteTestAccount()
     {
-        try
-        {
+        boolean deleteSuccess = true;
+        try {
             accountService.deleteAccount(TEST_LOGIN);
         }
-        catch(Exception e)
-        {
-            e.printStackTrace();
+        catch (Exception ignored) {
+            deleteSuccess = false;
         }
+        return deleteSuccess;
     }
 
     @BeforeClass
     public static void setUp() throws Exception
     {
         when(messageSystem.getAddressService()).thenReturn(addressService);
+        accountService = new AccountServiceImpl(new DatabaseConnectorH2(), messageSystem);
     }
 
     @After
@@ -54,8 +57,59 @@ public class AccountServiceTest {
     @Test
     public void testRegistSuccess() throws Exception
     {
-        accountService = new AccountServiceImpl(new DatabaseConnectorH2(), messageSystem);
         AccountSession accountSession = accountService.regist(TEST_SESSION_ID, TEST_LOGIN, TEST_PASSWORD);
-        Assert.assertTrue(!accountSession.getError());
+        Assert.assertFalse(accountSession.getError());
+        accountService.deleteAccount(TEST_LOGIN);
+    }
+
+    @Test
+    public void testRegistExistAccount() throws Exception
+    {
+        accountService.regist(TEST_SESSION_ID, TEST_LOGIN, TEST_PASSWORD);
+        Assert.assertTrue(accountService.regist(TEST_SESSION_ID, TEST_LOGIN, TEST_PASSWORD).getSessionStatus().equals(AccountSessionStatus.EXIST_USER));
+        accountService.deleteAccount(TEST_LOGIN);
+    }
+
+    @Test
+    public void testAuthSuccess() throws Exception
+    {
+        accountService.regist(TEST_SESSION_ID, TEST_LOGIN, TEST_PASSWORD);
+        AccountSession accountSession = accountService.auth(TEST_SESSION_ID, TEST_LOGIN, TEST_PASSWORD);
+        Assert.assertFalse(accountSession.getError());
+        accountService.deleteAccount(TEST_LOGIN);
+    }
+
+    @Test
+    public void testAuthInvalidLogin() throws Exception
+    {
+        accountService.regist(TEST_SESSION_ID, TEST_LOGIN, TEST_PASSWORD);
+        AccountSession accountSession = accountService.auth(TEST_SESSION_ID, TEST_LOGIN.concat(myTestString), TEST_PASSWORD);
+        Assert.assertTrue(accountSession.getSessionStatus().equals(AccountSessionStatus.INVALID_LOGIN));
+        accountService.deleteAccount(TEST_LOGIN);
+    }
+
+    @Test
+    public void testAuthInvalidPassword() throws Exception
+    {
+        accountService.regist(TEST_SESSION_ID, TEST_LOGIN, TEST_PASSWORD);
+        AccountSession accountSession = accountService.auth(TEST_SESSION_ID, TEST_LOGIN, TEST_PASSWORD.concat(myTestString));
+        Assert.assertTrue(accountSession.getSessionStatus().equals(AccountSessionStatus.INVALID_PASS));
+        accountService.deleteAccount(TEST_LOGIN);
+    }
+
+    @Test
+    public void testDeleteAccountSuccess() throws Exception
+    {
+        accountService.regist(TEST_SESSION_ID, TEST_LOGIN, TEST_PASSWORD);
+        accountService.deleteAccount(TEST_LOGIN);
+        Assert.assertTrue(accountService.auth(TEST_SESSION_ID, TEST_LOGIN, TEST_PASSWORD).getError());
+    }
+
+    @Test
+    public void testDeleteAccountWrong() throws Exception
+    {
+        accountService.regist(TEST_SESSION_ID, TEST_LOGIN, TEST_PASSWORD);
+        Assert.assertFalse(accountService.deleteAccount(TEST_LOGIN.concat(myTestString)));
+        accountService.deleteAccount(TEST_LOGIN);
     }
 }

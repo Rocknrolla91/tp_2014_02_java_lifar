@@ -14,13 +14,17 @@ public class DatabaseConnectorH2 extends DatabaseConnector {
     {
         configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         configuration.setProperty("hibernate.connection.driver_class", "org.h2.Driver");
-        String url = "jdbc:h2:mem:mydb;" +
-                "INIT=RUNSCRIPT FROM '../db/myDB1.sql';MVCC=true";
-        configuration.setProperty("hibernate.connection.url", url/*+ "INIT=RUNSCRIPT FROM '/myDB1.sql';MVCC=true"*/);
+        String url =
+                //"jdbc:h2:mem:java_game_server1"
+                "jdbc:h2:~/h/dbtest"
+                + ";INIT=RUNSCRIPT FROM '../db/myDB1.sql'"
+                //+ ";IFEXISTS=true"
+                + ";TRACE_LEVEL_FILE=2";
+        configuration.setProperty("hibernate.connection.url", url);
         configuration.setProperty("hibernate.connection.username", "sa");
         configuration.setProperty("hibernate.connection.password", "");
         configuration.setProperty("hibernate.show_sql", "true");
-       // configuration.setProperty("hibernate.hbm2ddl.auto", "validate");
+        configuration.setProperty("hibernate.hbm2ddl.auto", "update");
     }
 }
 

@@ -59,15 +59,16 @@ public class AccountServiceImpl implements AccountService, Abonent, Runnable {
     }
 
     @Override
-    public void deleteAccount(String login) throws SQLException
+    public boolean deleteAccount(String login) throws SQLException
     {
         try
         {
-            accountsDAOImpl.deleteAccount(login);
+            return accountsDAOImpl.deleteAccount(login);
         }
         catch (Exception e)
         {
            e.getMessage();
+           return false;
         }
     }
 

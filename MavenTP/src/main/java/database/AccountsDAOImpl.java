@@ -20,7 +20,8 @@ public class AccountsDAOImpl implements AccountsDAO {
     {
         Session session = sessionFactory.openSession();
         Criteria criteria = session.createCriteria(AccountsDataSet.class);
-        return (AccountsDataSet) criteria.add(Restrictions.eq("login", name)).uniqueResult();
+        AccountsDataSet result = (AccountsDataSet) criteria.add(Restrictions.eq("login", name)).uniqueResult();
+        return result;
     }
 
     @Override
@@ -45,20 +46,26 @@ public class AccountsDAOImpl implements AccountsDAO {
     }
 
     @Override
-    public void deleteAccount(String login)
+    public boolean deleteAccount(String login)
     {
         AccountsDataSet account = getAccount(login);
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        try
+        if(account != null)
         {
-            session.delete(account);
-            transaction.commit();
-        }
-        catch (HibernateException e)
-        {
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+            try
+            {
+                session.delete(account);
+                transaction.commit();
+            }
+            catch (HibernateException e)
+            {
+                session.close();
+                e.printStackTrace();
+            }
             session.close();
+            return true;
         }
-        session.close();
+        return false;
     }
 }

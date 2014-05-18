@@ -10,5 +10,5 @@ import java.sql.SQLException;
 public interface AccountService  extends Abonent, Runnable {
     public AccountSession regist(String sessionId, String login, String password) throws SQLException;
     public AccountSession auth(String sessionId, String login, String password) throws SQLException;
-    public void deleteAccount(String login) throws SQLException;
+    public boolean deleteAccount(String login) throws SQLException;
 }

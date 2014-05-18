@@ -6,5 +6,5 @@ package database;
 public interface AccountsDAO {
     AccountsDataSet getAccount(String login);
     boolean saveAccount(AccountsDataSet dataSet);
-    void deleteAccount(String login);
+    boolean deleteAccount(String login);
 }
