@@ -11,6 +11,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
 import org.eclipse.jetty.server.Handler;
+import resourceSystem.ResourceSystem;
 
 /**
  * Created by Alena on 2/20/14.
@@ -18,6 +19,7 @@ import org.eclipse.jetty.server.Handler;
 
 public class Server {
     private int portNumber = 8080;
+    ResourceSystem resourceSystem = ResourceSystem.getInstance();
     private DatabaseConnector databaseConnector;
     org.eclipse.jetty.server.Server server = new org.eclipse.jetty.server.Server(portNumber);
 
