@@ -19,7 +19,7 @@
         <label for="password" title="Password:">
             <input id="password" type="text" name="password"/>
         </label>
-        <input type="submit" value="GO!" />
+        <input type="submit" value="GO!" name="submit" />
     </form>
     <p style="color:green;">
         <a href="/regist">You can sign up here!</a>

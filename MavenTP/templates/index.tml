@@ -3,7 +3,7 @@
     <title>Welcome</title>
 </head>
 <body>
-Hello, user! You have a sessionID = ${userId}
+Hello, user! You have a sessionID = <div id="sessionId">${userId}</div>
 <div>
     <p><a href="/timer"> you can go to Timer!</a></p>
     <img src="/putin.jpg" style="max-height:200px"/>

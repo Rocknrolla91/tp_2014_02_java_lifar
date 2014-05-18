@@ -1,7 +1,9 @@
-import frontend.FrontendTest;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
+
+import frontend.FrontendTest;
+import functional.*;
 
 /**
  * Created by Alena on 5/12/14.

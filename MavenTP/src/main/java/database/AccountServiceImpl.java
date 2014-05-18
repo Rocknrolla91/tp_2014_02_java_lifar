@@ -21,7 +21,8 @@ public class AccountServiceImpl implements AccountService, Abonent, Runnable {
     public AccountServiceImpl(DatabaseConnector databaseConnector, MessageSystem messageSystem)
     {
         this.accountsDAOImpl = new AccountsDAOImpl(databaseConnector);
-        setMessageSystem(messageSystem);
+        if(messageSystem != null)
+            setMessageSystem(messageSystem);
     }
 
     @Override
