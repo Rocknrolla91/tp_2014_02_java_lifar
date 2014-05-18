@@ -6,6 +6,7 @@ import messageSystem.MessageSystem;
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import resourceSystem.ResourceSystem;
 import util.StringGenerator;
 
 import java.util.UUID;
@@ -20,13 +21,13 @@ public class AccountServiceTest {
     private static MessageSystem messageSystem = mock(MessageSystem.class);
     private static AddressService addressService = mock(AddressService.class);
 
+
     private static final String TEST_LOGIN = StringGenerator.getRandomString(6);
     private static final String TEST_PASSWORD = StringGenerator.getRandomString(6);
     private static final String TEST_SESSION_ID = UUID.randomUUID().toString();
 
     private static final String myTestString = "test";
 
-   // private static DatabaseConnector databaseConnector;/* = new DatabaseConnectorH2();*/
     private static AccountService accountService;
 
     private boolean deleteTestAccount()
@@ -44,8 +45,9 @@ public class AccountServiceTest {
     @BeforeClass
     public static void setUp() throws Exception
     {
+        ResourceSystem resourceSystem = ResourceSystem.getInstance();
         when(messageSystem.getAddressService()).thenReturn(addressService);
-        accountService = new AccountServiceImpl(new DatabaseConnectorH2(), messageSystem);
+        accountService = new AccountServiceImpl(new DatabaseConnector(resourceSystem.getConfigFile("H2.xml")), messageSystem);
     }
 
     @After

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config name="server">
+    <property name="portNumber">8080</property>
+</config>

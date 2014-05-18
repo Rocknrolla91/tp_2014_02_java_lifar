@@ -11,8 +11,8 @@ public class ResourceSystem {
     private Map<String, Resource> resources = new HashMap<>();
     private Map<String, Map<String, String>> configFiles = new HashMap<>();
     private static ResourceSystem instance;
-    private static final String RESOURCES = "./resources";
-    private static final String CONFIG_FILES = "./configFiles";
+    private static final String RESOURCES = "../MavenTP/resources";
+    private static final String CONFIG_FILES = "../MavenTP/configFiles";
 
     public static ResourceSystem getInstance()
     {

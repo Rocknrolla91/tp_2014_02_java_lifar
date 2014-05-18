@@ -4,29 +4,29 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import resourceSystem.VirtualFileSystem;
+import resourceSystem.VirtualFileSystemImpl;
+
+import java.util.Map;
 
 /**
  * Created by Alena on 10.03.14.
  */
-public abstract class DatabaseConnector {
+public class DatabaseConnector {
     private SessionFactory sessionFactory;
 
-    public DatabaseConnector() {
+    public DatabaseConnector(Map<String, String> config) {
         org.hibernate.cfg.Configuration cfg = new org.hibernate.cfg.Configuration();
 
-        configureConnection(cfg);
-        configureDataSets(cfg);
+        cfg.addAnnotatedClass(AccountsDataSet.class);
+        for(Map.Entry<String, String> entry: config.entrySet())
+        cfg.setProperty(entry.getKey(), entry.getValue());
+
         configureSessionBuilder(cfg);
     }
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;
-    }
-
-    protected abstract void configureConnection(org.hibernate.cfg.Configuration cfg);
-
-    private void configureDataSets(org.hibernate.cfg.Configuration cfg) {
-        cfg.addAnnotatedClass(AccountsDataSet.class);
     }
 
     private void configureSessionBuilder(org.hibernate.cfg.Configuration cfg) {
