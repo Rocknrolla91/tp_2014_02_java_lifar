@@ -1,11 +1,11 @@
 package frontend;
 
-import database.AccountSessionStatus;
 import exception.EmptyDataException;
 import exception.ExceptionMessageClass;
 import messageSystem.*;
 import database.AccountSession;
 
+import resourceSystem.ResourceSystem;
 import templator.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,11 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
-
-/*
-избавиться от исключений
-*/
 
 /**
  * Created by Alena on 2/20/14.
@@ -32,6 +27,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
     private MessageSystem messageSystem;
     private Address address;
     private Map<String, AccountSession> sessions = new ConcurrentHashMap<>();
+    private ResourceSystem resourceSystem = ResourceSystem.getInstance();
 
     public void setSession(AccountSession session)
     {
@@ -44,6 +40,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
 
     public Frontend(MessageSystem messageSystem)
     {
+        resourceSystem.getResource("PagePath");
         this.setMessageSystem(messageSystem);
     }
 
