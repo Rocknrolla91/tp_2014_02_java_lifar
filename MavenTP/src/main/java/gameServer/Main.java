@@ -16,7 +16,7 @@ public class Main {
 //        PagePath pagePath = (PagePath) resourceSystem.getResource("PagePath");
 
         GameServer gameServer = new GameServer(Integer.parseInt(port),
-                new DatabaseConnector(resourceSystem.getConfigFile("MySQL")));
+                new DatabaseConnector(resourceSystem.getConfigFile("H2")));
         gameServer.start();
     }
 }

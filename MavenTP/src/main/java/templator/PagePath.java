@@ -9,10 +9,10 @@ import java.io.Serializable;
  */
 public class PagePath implements Resource, Serializable {
 
-    public static final String AUTH_P = "/index";
-    public static final String REGIST_P = null;
-    public static final String TIMER_P = null;
-    public static final String INDEX_P = null;
-    public static final String WAIT_P = null;
+    public static String AUTH_P = "/index";
+    public static String REGIST_P = null;
+    public static String TIMER_P = null;
+    public static String INDEX_P = null;
+    public static String WAIT_P = null;
     //public String ALL_P = "/*";
 }

@@ -33,6 +33,9 @@ public class ReflectionHelper {
             {
                 field.set(object, Integer.decode(value));
             }
+            else if (field.getType().equals(String.class)) {
+                field.set(object, value);
+            }
             field.setAccessible(false);
         }
         catch (SecurityException |

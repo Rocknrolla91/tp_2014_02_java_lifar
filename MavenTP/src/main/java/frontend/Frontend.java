@@ -40,7 +40,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
 
     public Frontend(MessageSystem messageSystem)
     {
-        resourceSystem.getInstance();
+        resourceSystem = ResourceSystem.getInstance();
         this.setMessageSystem(messageSystem);
     }
 
