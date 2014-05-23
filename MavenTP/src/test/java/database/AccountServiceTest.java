@@ -47,7 +47,7 @@ public class AccountServiceTest {
     {
         ResourceSystem resourceSystem = ResourceSystem.getInstance();
         when(messageSystem.getAddressService()).thenReturn(addressService);
-        accountService = new AccountServiceImpl(new DatabaseConnector(resourceSystem.getConfigFile("H2.xml")), messageSystem);
+        accountService = new AccountServiceImpl(new DatabaseConnector(resourceSystem.getConfigFile("H2")), messageSystem);
     }
 
     @After

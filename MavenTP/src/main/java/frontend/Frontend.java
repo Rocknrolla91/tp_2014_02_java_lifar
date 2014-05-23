@@ -5,6 +5,7 @@ import exception.EmptyDataException;
 import exception.ExceptionMessageClass;
 import messageSystem.*;
 import database.AccountSession;
+
 import templator.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +32,6 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
     private MessageSystem messageSystem;
     private Address address;
     private Map<String, AccountSession> sessions = new ConcurrentHashMap<>();
-
 
     public void setSession(AccountSession session)
     {
@@ -75,54 +75,49 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
         getPageVariablesFromSessionStatus(accountSession,pageVariables);
         Long userId = (accountSession != null) ? accountSession.getAccountId() : null;
 
-        switch(request.getRequestURI())
+        String requested = request.getPathInfo();
+
+        if(requested.equals(PagePath.INDEX_P))
         {
-            case PagePath.INDEX_P:
-            {
-                if(userId == null || accountSession.getError()) {
-                    response.sendRedirect(PagePath.AUTH_P);
-                } else {
-                    currentlyPage = "index.tml";
-                    pageVariables.put("userId", userId);
-                    okResponse(response, pageVariables, currentlyPage);
-                }
-                break;
-            }
-            case PagePath.AUTH_P:
-            {
-                currentlyPage = "authorize.tml";
+            if(userId == null || accountSession.getError()) {
+                response.sendRedirect(PagePath.AUTH_P);
+            } else {
+                currentlyPage = "index.tml";
+                pageVariables.put("userId", userId);
                 okResponse(response, pageVariables, currentlyPage);
-                break;
             }
-            case PagePath.TIMER_P:
-            {
-                if(userId == null || accountSession.getError()) {
-                    response.sendRedirect(PagePath.AUTH_P);
-                } else {
-                    currentlyPage = "timer.tml";
-                    pageVariables.put("userId", userId);
-                    pageVariables.put("refreshPeriod", "1000");
-                    pageVariables.put("serverTime", getTime());
-                    okResponse(response, pageVariables, currentlyPage);
-                }
-                    break;
-            }
-            case PagePath.REGIST_P:
-            {
-                currentlyPage = "registration.tml";
+        }
+        else if(requested.equals(PagePath.AUTH_P))
+        {
+            currentlyPage = "authorize.tml";
+            okResponse(response, pageVariables, currentlyPage);
+        }
+        else if(requested.equals(PagePath.TIMER_P))
+        {
+            if(userId == null || accountSession.getError()) {
+                response.sendRedirect(PagePath.AUTH_P);
+            } else {
+                currentlyPage = "timer.tml";
+                pageVariables.put("userId", userId);
+                pageVariables.put("refreshPeriod", "1000");
+                pageVariables.put("serverTime", getTime());
                 okResponse(response, pageVariables, currentlyPage);
-                break;
             }
-            case PagePath.WAIT_P:
-            {
-                currentlyPage = "waiting.tml";
-                pageVariables.put("refreshPeriod", "3000");
-                okResponse(response, pageVariables, currentlyPage);
-                break;
-            }
-            default:
-                response.sendRedirect(PagePath.INDEX_P);
-                break;
+        }
+        else if(requested.equals(PagePath.REGIST_P))
+        {
+            currentlyPage = "registration.tml";
+            okResponse(response, pageVariables, currentlyPage);
+        }
+        else if(requested.equals(PagePath.WAIT_P))
+        {
+            currentlyPage = "waiting.tml";
+            pageVariables.put("refreshPeriod", "3000");
+            okResponse(response, pageVariables, currentlyPage);
+        }
+        else
+        {
+            response.sendRedirect(PagePath.INDEX_P);
         }
     }
 
@@ -144,25 +139,34 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
             throws IOException, ServletException
     {
         Map<String, Object> pageVariables = new HashMap<>();
-        switch (request.getRequestURI())
+        String requested = request.getRequestURI();
+        if(requested.equals(PagePath.AUTH_P))
         {
-            case PagePath.AUTH_P:
-                try
-                {
-                    doAuth(request, response); //return boolean
-                }
-                catch (EmptyDataException e)
-                {
-                    pageVariables.put("ErrorMessage", e.getMessage());
-                    okResponse(response, pageVariables, "authorize.tml");
-                }
-                break;
-            case PagePath.REGIST_P:
+            try
+            {
+                doAuth(request, response); //return boolean
+            }
+            catch (EmptyDataException e)
+            {
+                pageVariables.put("ErrorMessage", e.getMessage());
+                okResponse(response, pageVariables, "authorize.tml");
+            }
+        }
+        else if(requested.equals(PagePath.REGIST_P))
+        {
+            try
+            {
                 doRegist(request, response);
-                break;
-            default:
-                response.sendRedirect(PagePath.AUTH_P);
-                break;
+            }
+            catch (EmptyDataException e)
+            {
+                pageVariables.put("ErrorMessage", e.getMessage());
+                okResponse(response, pageVariables, "authorize.tml");
+            }
+        }
+        else
+        {
+            response.sendRedirect(PagePath.AUTH_P);
         }
     }
 
@@ -189,7 +193,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
     }
 
     private void doRegist(HttpServletRequest request, HttpServletResponse response)
-            throws IOException
+            throws IOException, EmptyDataException
     {
         String sessionId = request.getSession().getId();
         String login = request.getParameter("login");

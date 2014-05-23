@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<class name = "templator.PagePath">
+<class name = "resourceSystem.PathAndTemplate">
     <INDEX_P>/index</INDEX_P>
     <AUTH_P>/auth</AUTH_P>
     <REGIST_P>/regist</REGIST_P>

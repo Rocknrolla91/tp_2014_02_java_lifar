@@ -1,6 +1,7 @@
 package functional;
 
 import com.sun.istack.internal.NotNull;
+import gameServer.GameServer;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -15,29 +16,29 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import database.AccountService;
 import database.AccountServiceImpl;
 import database.DatabaseConnector;
-import database.DatabaseConnectorH2;
-import gameServer.Server;
+import resourceSystem.ResourceSystem;
 
 
 /**
- * Created by tonick on 18.05.2014.
+ * Created by Alena on 18.05.2014.
  */
 public abstract class AuthTest {
     protected final static int PORT = 8080;
-    protected static Server gameServer;
+    protected static GameServer gameServer;
     protected static Thread gameThread;
     protected static AccountService accountService;
+    protected static ResourceSystem resourceSystem = ResourceSystem.getInstance();
 
     @Rule
     public Timeout testTimeout = new Timeout(20000);
 
     @BeforeClass
     public static void setUp() throws Exception {
-        DatabaseConnector database = new DatabaseConnectorH2();
-        gameServer = new Server(PORT, database);
+        DatabaseConnector database = new DatabaseConnector(resourceSystem.getConfigFile("H2"));
+        gameServer = new GameServer(PORT, database);
         gameThread = new Thread(() -> {
             try {
-                gameServer.run();
+                gameServer.start();
             } catch (Exception e) {
                 e.printStackTrace();
             }

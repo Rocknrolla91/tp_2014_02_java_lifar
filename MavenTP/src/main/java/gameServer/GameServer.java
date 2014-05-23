@@ -58,11 +58,19 @@ public class GameServer {
         server.setHandler(handlers);
     }
 
+    public void stop() throws Exception {
+        server.stop();
+        running = false;
+    }
+
     public void start() throws Exception {
         server.start();
         running = true;
         server.join();
         running = false;
+    }
 
+    public boolean isRunning() {
+        return running;
     }
 }

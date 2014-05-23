@@ -22,17 +22,17 @@ public class DatabaseConnector {
         for(Map.Entry<String, String> entry: config.entrySet())
         cfg.setProperty(entry.getKey(), entry.getValue());
 
-        configureSessionBuilder(cfg);
+        sessionFactory = createSessionFactory(cfg);
     }
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
-    private void configureSessionBuilder(org.hibernate.cfg.Configuration cfg) {
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
-        builder.applySettings(cfg.getProperties());
-        ServiceRegistry serviceRegistry = builder.build();
-        this.sessionFactory = cfg.buildSessionFactory(serviceRegistry);
-    }
+    private SessionFactory createSessionFactory(Configuration configuration) {
+    StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
+    builder.applySettings(configuration.getProperties());
+    ServiceRegistry serviceRegistry = builder.build();
+    return configuration.buildSessionFactory(serviceRegistry);
+}
 }

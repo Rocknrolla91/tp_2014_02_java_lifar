@@ -8,7 +8,7 @@ import java.util.UUID;
 
 
 /**
- * Created by tonick on 18.05.2014.
+ * Created by Alena on 18.05.2014.
  */
 public class LoginTest extends AuthTest {
     private final String targetUrl = "http://localhost:" + PORT;

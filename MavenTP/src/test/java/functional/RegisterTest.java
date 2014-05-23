@@ -6,6 +6,9 @@ import util.StringGenerator;
 
 import java.util.UUID;
 
+/**
+ * Created by Alena on 18.05.2014.
+ */
 public class RegisterTest extends AuthTest {
     private static final String TEST_LOGIN = StringGenerator.getRandomString(6);
     private static final String TEST_PASSWORD = StringGenerator.getRandomString(6);
