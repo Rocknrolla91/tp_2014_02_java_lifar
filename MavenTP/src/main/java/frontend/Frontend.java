@@ -27,7 +27,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
     private MessageSystem messageSystem;
     private Address address;
     private Map<String, AccountSession> sessions = new ConcurrentHashMap<>();
-    private ResourceSystem resourceSystem = ResourceSystem.getInstance();
+    ResourceSystem resourceSystem;
 
     public void setSession(AccountSession session)
     {
@@ -40,7 +40,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
 
     public Frontend(MessageSystem messageSystem)
     {
-        resourceSystem.getResource("PagePath");
+        resourceSystem.getInstance();
         this.setMessageSystem(messageSystem);
     }
 

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<class name = "resourceSystem.PathAndTemplate">
+<class name = "templator.PagePath">
     <INDEX_P>/index</INDEX_P>
     <AUTH_P>/auth</AUTH_P>
     <REGIST_P>/regist</REGIST_P>
     <TIMER_P>/timer</TIMER_P>
     <WAIT_P>/wait</WAIT_P>
-    <ALL_P>/*</ALL_P>
 </class>
