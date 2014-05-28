@@ -46,7 +46,7 @@ public class ResourceSystem {
             {
                 try
                 {
-                    Resource resource = SaxParser.parse(virtualFileSystem.getUTF8Text(fileName));
+                    Resource resource = SaxParserForGit.parse(virtualFileSystem.getUTF8Text(fileName));
                     resources.put(virtualFileSystem.getFileName(fileName), resource);
                 } catch (ParserException | IOException e) {
                     System.out.println("error while loading config " + fileName);

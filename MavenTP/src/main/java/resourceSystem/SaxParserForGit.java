@@ -13,7 +13,7 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by Alena on 5/24/14.
  */
-public class SaxParser {
+public class SaxParserForGit {
     public static Resource parse(String fileXML) throws ParserException {
         try
         {
