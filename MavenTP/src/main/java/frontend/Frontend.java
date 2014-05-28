@@ -141,7 +141,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
             throws IOException, ServletException
     {
         Map<String, Object> pageVariables = new HashMap<>();
-        String requested = request.getRequestURI();
+        String requested = request.getPathInfo();
         if(requested.equals(PagePath.AUTH_P))
         {
             try

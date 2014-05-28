@@ -154,13 +154,12 @@ public class FrontendTest {
    {
        when(request.getParameter("login")).thenReturn(StringGenerator.getRandomString(10));
        when(request.getParameter("password")).thenReturn(StringGenerator.getRandomString(10));
-       when(request.getRequestURI()).thenReturn(PagePath.AUTH_P);
+       when(request.getPathInfo()).thenReturn(PagePath.AUTH_P);
        frontend.doPost(request, response);
        verify(response, atLeastOnce()).sendRedirect(PagePath.WAIT_P);
-       //frontend.setSession(AccountSession.getInvalidSession(TEST_SESSION_ID, AccountSessionStatus.TEST_ERROR));
        doAuthorization(false, null);
        frontend.doGet(request, response);
-       //Assert.assertTrue(stringWriter.toString().contains("${ErrorMessage}</p>");
+       Assert.assertTrue(stringWriter.toString().contains(AccountSessionStatus.TEST_ERROR));
        Assert.assertTrue(stringWriter.toString().contains("Log in, please!"));
    }
 
@@ -169,11 +168,42 @@ public class FrontendTest {
     {
         when(request.getParameter("login")).thenReturn(TEST_LOGIN);
         when(request.getParameter("password")).thenReturn(TEST_PASSWORD);
-        when(request.getRequestURI()).thenReturn(PagePath.AUTH_P);
+        when(request.getPathInfo()).thenReturn(PagePath.AUTH_P);
         frontend.doPost(request, response);
         verify(response, atLeastOnce()).sendRedirect(PagePath.WAIT_P);
-        frontend.setSession(new AccountSession(TEST_SESSION_ID, TEST_ACCOUNT_ID, TEST_LOGIN, AccountSessionStatus.OK_SESSION, false));
+        AccountSession accountSession = new AccountSession(TEST_SESSION_ID, TEST_ACCOUNT_ID, TEST_LOGIN, AccountSessionStatus.OK_SESSION, false);
+        doAuthorization(true, accountSession);
         frontend.doGet(request, response);
-        Assert.assertTrue(stringWriter.toString().contains("Timer"));
+        Assert.assertTrue(stringWriter.toString().contains(AccountSessionStatus.OK_SESSION));
+        Assert.assertTrue(stringWriter.toString().contains("Log in, please!"));
+    }
+
+    @Test
+    public void testPostRegistrationFailed() throws Exception
+    {
+        when(request.getParameter("login")).thenReturn(TEST_LOGIN);
+        when(request.getParameter("password")).thenReturn(TEST_PASSWORD);
+        when(request.getPathInfo()).thenReturn(PagePath.REGIST_P);
+        frontend.doPost(request, response);
+        verify(response, atLeastOnce()).sendRedirect(PagePath.WAIT_P);
+        doAuthorization(false, null);
+        frontend.doGet(request, response);
+        Assert.assertTrue(stringWriter.toString().contains(AccountSessionStatus.TEST_ERROR));
+        Assert.assertTrue(stringWriter.toString().contains("Sign up, if you want!"));
+    }
+
+    @Test
+    public void testPostRegistrationOk() throws Exception
+    {
+        when(request.getParameter("login")).thenReturn(TEST_LOGIN);
+        when(request.getParameter("password")).thenReturn(TEST_PASSWORD);
+        when(request.getPathInfo()).thenReturn(PagePath.REGIST_P);
+        frontend.doPost(request, response);
+        verify(response, atLeastOnce()).sendRedirect(PagePath.WAIT_P);
+        AccountSession accountSession = new AccountSession(TEST_SESSION_ID, TEST_ACCOUNT_ID, TEST_LOGIN, AccountSessionStatus.OK_SESSION, false);
+        doAuthorization(true, accountSession);
+        frontend.doGet(request, response);
+        Assert.assertTrue(stringWriter.toString().contains(AccountSessionStatus.OK_SESSION));
+        Assert.assertTrue(stringWriter.toString().contains("Sign up, if you want!"));
     }
 }
