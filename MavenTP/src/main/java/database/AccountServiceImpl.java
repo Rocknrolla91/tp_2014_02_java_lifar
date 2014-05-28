@@ -14,7 +14,6 @@ public class AccountServiceImpl implements AccountService, Abonent, Runnable {
     private AccountsDAO accountsDAOImpl;
     private MessageSystem messageSystem;
     private Address address;
-    public static final String OK_SESSION = "It's ok!";
 
 
 
@@ -56,7 +55,7 @@ public class AccountServiceImpl implements AccountService, Abonent, Runnable {
         {
             return AccountSession.getInvalidSession(sessionId, AccountSessionStatus.DB_ERROR);
         }
-        return new AccountSession(sessionId, account.getUserId(), login, OK_SESSION, false);
+        return new AccountSession(sessionId, account.getUserId(), login, AccountSessionStatus.OK_SESSION, false);
     }
 
     @Override

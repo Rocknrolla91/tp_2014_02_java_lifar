@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
 /**
- * Created by Alena on 5/18/14.
+ * Created by Alena on 5/24/14.
  */
 public class SaxParser {
     public static Resource parse(String fileXML) throws ParserException {

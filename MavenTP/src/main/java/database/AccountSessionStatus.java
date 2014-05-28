@@ -8,4 +8,6 @@ public class AccountSessionStatus {
     public static final String INVALID_LOGIN= "User with this login is not found";
     public static final String INVALID_PASS = "Wrong password";
     public static final String DB_ERROR = "the database error";
+    public static final String OK_SESSION = "It's ok!";
+    public static final String TEST_ERROR = "This is error for Test";
 }

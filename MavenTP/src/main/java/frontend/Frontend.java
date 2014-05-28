@@ -29,7 +29,12 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
     private Map<String, AccountSession> sessions = new ConcurrentHashMap<>();
     ResourceSystem resourceSystem;
 
-    public void setSession(AccountSession session)
+    public Map<String, AccountSession> getSessions()
+    {
+        return sessions;
+    }
+
+    public synchronized void setSession(AccountSession session)
     {
         AccountSession accountSession = sessions.get(session.getSessionId());
         if(accountSession != null)
@@ -79,14 +84,14 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
             if(userId == null || accountSession.getError()) {
                 response.sendRedirect(PagePath.AUTH_P);
             } else {
-                currentlyPage = "index.tml";
+                currentlyPage = Templates.INDEX;
                 pageVariables.put("userId", userId);
                 okResponse(response, pageVariables, currentlyPage);
             }
         }
         else if(requested.equals(PagePath.AUTH_P))
         {
-            currentlyPage = "authorize.tml";
+            currentlyPage = Templates.AUTH;
             okResponse(response, pageVariables, currentlyPage);
         }
         else if(requested.equals(PagePath.TIMER_P))
@@ -94,7 +99,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
             if(userId == null || accountSession.getError()) {
                 response.sendRedirect(PagePath.AUTH_P);
             } else {
-                currentlyPage = "timer.tml";
+                currentlyPage = Templates.TIMER;
                 pageVariables.put("userId", userId);
                 pageVariables.put("refreshPeriod", "1000");
                 pageVariables.put("serverTime", getTime());
@@ -103,12 +108,12 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
         }
         else if(requested.equals(PagePath.REGIST_P))
         {
-            currentlyPage = "registration.tml";
+            currentlyPage = Templates.REGIST;
             okResponse(response, pageVariables, currentlyPage);
         }
         else if(requested.equals(PagePath.WAIT_P))
         {
-            currentlyPage = "waiting.tml";
+            currentlyPage = Templates.WAIT;
             pageVariables.put("refreshPeriod", "3000");
             okResponse(response, pageVariables, currentlyPage);
         }
@@ -146,7 +151,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
             catch (EmptyDataException e)
             {
                 pageVariables.put("ErrorMessage", e.getMessage());
-                okResponse(response, pageVariables, "authorize.tml");
+                okResponse(response, pageVariables, Templates.AUTH);
             }
         }
         else if(requested.equals(PagePath.REGIST_P))
@@ -158,7 +163,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
             catch (EmptyDataException e)
             {
                 pageVariables.put("ErrorMessage", e.getMessage());
-                okResponse(response, pageVariables, "authorize.tml");
+                okResponse(response, pageVariables, Templates.AUTH  );
             }
         }
         else
@@ -173,7 +178,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
             throw new EmptyDataException(ExceptionMessageClass.EMPTY);
     }
 
-    private void doAuth(HttpServletRequest request, HttpServletResponse response)
+    private synchronized void doAuth(HttpServletRequest request, HttpServletResponse response)
             throws IOException, EmptyDataException
     {
         String sessionId = request.getSession().getId();
@@ -189,7 +194,7 @@ public class Frontend extends HttpServlet implements Abonent, Runnable{
         response.sendRedirect(PagePath.WAIT_P);
     }
 
-    private void doRegist(HttpServletRequest request, HttpServletResponse response)
+    private synchronized void doRegist(HttpServletRequest request, HttpServletResponse response)
             throws IOException, EmptyDataException
     {
         String sessionId = request.getSession().getId();
