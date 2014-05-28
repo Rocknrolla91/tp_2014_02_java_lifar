@@ -112,8 +112,8 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SaxParserForGit.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/resourceSystem/SaxParserForGit.java">
+          <file leaf-file-name="SaxParser.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/resourceSystem/SaxParser.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="15" column="13" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0" vertical-offset="95" max-vertical-offset="663">
                   <folding />
@@ -124,7 +124,7 @@
           <file leaf-file-name="FrontendTest.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/frontend/FrontendTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="160" column="36" selection-start="5821" selection-end="5821" vertical-scroll-proportion="0.33333334" vertical-offset="2200" max-vertical-offset="2686">
+                <state line="160" column="0" selection-start="5785" selection-end="5785" vertical-scroll-proportion="0.33333334" vertical-offset="2200" max-vertical-offset="2686">
                   <folding />
                 </state>
               </provider>
@@ -1256,12 +1256,12 @@
       <workItem from="1400860755120" duration="4498000" />
       <workItem from="1400870690803" duration="6848000" />
       <workItem from="1401041091542" duration="42000" />
-      <workItem from="1401287441146" duration="13309000" />
+      <workItem from="1401287441146" duration="13365000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217898000" />
+    <option name="totallyTimeSpent" value="217954000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1284,8 +1284,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1307,7 +1307,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20842572" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17252396" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4935065" sideWeight="0.49889135" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4935065" sideWeight="0.49889135" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270925" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1348,7 +1348,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resourceSystem/SaxParserForGit.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/resourceSystem/SaxParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="0" selection-start="331" selection-end="331" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="799">
           <folding />
@@ -1379,7 +1379,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resourceSystem/SaxParserForGit.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/resourceSystem/SaxParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="0" selection-start="331" selection-end="331" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="799">
           <folding />
@@ -1631,7 +1631,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resourceSystem/SaxParserForGit.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/resourceSystem/SaxParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="13" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0" vertical-offset="95" max-vertical-offset="663">
           <folding />
@@ -1640,7 +1640,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/frontend/FrontendTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="36" selection-start="5821" selection-end="5821" vertical-scroll-proportion="0.33333334" vertical-offset="2200" max-vertical-offset="2686">
+        <state line="160" column="0" selection-start="5785" selection-end="5785" vertical-scroll-proportion="0.33333334" vertical-offset="2200" max-vertical-offset="2686">
           <folding />
         </state>
       </provider>
