@@ -10,7 +10,7 @@ import java.util.UUID;
 /**
  * Created by Alena on 18.05.2014.
  */
-public class LoginTest extends AuthTest {
+public class LoginRegistTest extends AuthTest {
     private final String targetUrl = "http://localhost:" + PORT;
     private static final String TEST_LOGIN = StringGenerator.getRandomString(6);
     private static final String TEST_PASSWORD = StringGenerator.getRandomString(6);
