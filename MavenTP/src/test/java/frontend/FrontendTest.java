@@ -1,6 +1,5 @@
 package frontend;
 
-import com.gargoylesoftware.htmlunit.Page;
 import database.AccountService;
 import database.AccountServiceImpl;
 import database.AccountSession;
@@ -20,13 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Random;
 import java.util.UUID;
 
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 /**

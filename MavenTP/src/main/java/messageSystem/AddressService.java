@@ -21,4 +21,6 @@ public class AddressService {
     {
         this.frontend = frontend;
     }
+
+    public Address getFrontend() {return frontend;}
 }

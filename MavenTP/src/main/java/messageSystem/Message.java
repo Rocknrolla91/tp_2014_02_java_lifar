@@ -13,12 +13,12 @@ public abstract class Message {
         this.to = to;
     }
 
-    protected Address getFrom()
+    public Address getFrom()
     {
         return from;
     }
 
-    protected Address getTo()
+    public Address getTo()
     {
         return to;
     }

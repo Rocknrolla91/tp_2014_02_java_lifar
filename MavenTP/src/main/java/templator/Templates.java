@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class Templates implements Resource, Serializable {
     public static String INDEX = null;
-    public static String TIMER = null;
+    public static String TIMER = "timer.tml";
     public static String REGIST = null;
     public static String AUTH = null;
     public static String WAIT = null;
